@@ -10,7 +10,9 @@ class UsuarioRepository extends AbstractRepository
      * Relationships (with)
      * @var array
      */
-    public $relationships = [];
+    public $relationships = [
+        'pessoa'
+    ];
 
     /**
      * @var array

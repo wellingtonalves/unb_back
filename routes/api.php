@@ -22,6 +22,7 @@ Route::group(['prefix' => 'v1'], function () use ($excepts) {
     Route::group(['prefix' => 'auth'], function () {
         Route::namespace('auth')->group(function () {
             Route::post('login', 'AuthController@login')->name('login');
+            Route::get('/user', 'AuthController@user');
         });
     });
 

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Exceptions\NaoAutorizadoException;
 use App\Helpers\Constants;
+use App\Repositories\PessoaRepository;
 use App\Repositories\UsuarioRepository;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Response;
@@ -25,6 +26,29 @@ class AuthService
         $this->repository = $repository;
     }
 
+    /**
+     * @return mixed
+     */
+    public function user()
+    {
+        try {
+
+            $userId = \auth()->guard('api')->id();
+            $loggedUser = $this->repository->find($userId);
+            return Response::custom('list', $loggedUser, Response::HTTP_OK);
+
+        } catch (\Exception $exception) {
+            Log::info(_('error_operation'));
+            Log::error($exception->getMessage());
+            return Response::custom('error_operation', $exception);
+        }
+    }
+
+    /**
+     * @param $request
+     * @return mixed
+     * @throws NaoAutorizadoException
+     */
     public function login($request)
     {
         $this->verificarPerfil($request);

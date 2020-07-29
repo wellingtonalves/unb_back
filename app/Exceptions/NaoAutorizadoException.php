@@ -11,7 +11,8 @@ class NaoAutorizadoException extends \Exception
     {
         throw new HttpResponseException(new Response([
             'message' => __('messages.not_authorized'),
-            'errors' => __('messages.error_operation')
+            'errors' => __('messages.error_operation'),
+            'messageType' => __('messages.message_type.erro')
         ], Response::HTTP_UNAUTHORIZED));
     }
 }

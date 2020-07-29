@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -54,4 +55,11 @@ class Usuario extends Authenticatable
     {
         return $this->tx_senha_usuario;
     }
+
+    public function pessoa(): BelongsTo
+    {
+        return $this->belongsTo(Pessoa::class, 'id_usuario', 'id_pessoa');
+//        return $this->hasOne(Pessoa::class, 'id_pessoa');
+    }
+
 }
