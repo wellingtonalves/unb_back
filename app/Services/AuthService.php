@@ -6,6 +6,7 @@ use App\Exceptions\NaoAutorizadoException;
 use App\Helpers\Constants;
 use App\Repositories\PessoaRepository;
 use App\Repositories\UsuarioRepository;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
@@ -97,8 +98,17 @@ class AuthService
         }
     }
 
-    public function logout()
+    public function logout($request)
     {
+        try {
 
+            $revoked = $request->user()->token()->revoke();
+            return Response::custom('logout_success', $revoked, Response::HTTP_OK);
+
+        } catch (\Exception $exception) {
+            Log::info(_('error_operation'));
+            Log::error($exception->getMessage());
+            return Response::custom('error_operation', $exception);
+        }
     }
 }
