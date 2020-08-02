@@ -25,7 +25,7 @@ class ResponseServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Response::macro('custom', function ($message = 'list', $response = null, $status = Response::HTTP_OK) {
+        Response::macro('custom', function ($message = 'list', $response = null, $status = Response::HTTP_OK, $messageType = null) {
             $data = [];
 
             if ($response instanceof \Exception) {
@@ -35,8 +35,10 @@ class ResponseServiceProvider extends ServiceProvider
 
                 return response()->json($data, $data['status']);
             }
+
             if (!$response instanceof LengthAwarePaginator) {
                 $data['message'] = __('messages.' . $message);
+                $data['messageType'] = $messageType ? __('messages.message_type.' . $messageType) : __('messages.message_type.sucesso');
                 $data['data'] = $response;
                 $data['status'] = $status;
 

@@ -67,7 +67,7 @@ class AuthService
             $attempt = app()->handle($request);
 
             if ($attempt->getStatusCode() !== Response::HTTP_OK) {
-                return Response::custom('login_error', $request->get('username'), Response::HTTP_UNAUTHORIZED);
+                return Response::custom('login_error', $request->get('username'), Response::HTTP_UNAUTHORIZED, 'erro');
             }
 
             return Response::custom('list', json_decode($attempt->getContent()), Response::HTTP_OK);
