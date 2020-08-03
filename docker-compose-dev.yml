@@ -1,0 +1,14 @@
+version: '3.5'
+services:
+  api:
+    container_name: secretaria-virtual-api
+    build:
+      './docker/.'
+    image: secretaria-virtual-api:latest
+    working_dir: /var/www/html/secretaria-virtual-api
+    ports:
+      - 8001:80
+    volumes:
+      - .:/var/www/html/secretaria-virtual-api
+      - ./docker/apache/apache.conf:/etc/apache2/sites-enabled/000-default.conf
+    restart: on-failure
