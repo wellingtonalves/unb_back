@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
@@ -55,7 +56,8 @@ class Handler extends ExceptionHandler
         if ($exception instanceof ValidationException) {
             return response()->json([
                 'message' => __('messages.error_form'),
-                'errors' => $exception->validator->getMessageBag()
+                'errors' => $exception->validator->getMessageBag(),
+                'messageType' => __('messages.message_type.erro')
             ],
                 Response::HTTP_UNPROCESSABLE_ENTITY);
         }

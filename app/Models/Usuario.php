@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
 class Usuario extends Authenticatable
 {
-    use HasApiTokens;
+    use HasApiTokens, Notifiable;
 //    use SoftDeletes;
 
     protected $table        = 'tb_usuario';
@@ -39,4 +41,24 @@ class Usuario extends Authenticatable
      * @var array
      */
 //    protected $with = ['perfil'];
+
+    /**
+     * @param $username
+     * @return mixed
+     */
+    public function findForPassport($username)
+    {
+        return $this->where('tx_login_usuario', $username)->first();
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->tx_senha_usuario;
+    }
+
+    public function pessoa(): BelongsTo
+    {
+        return $this->belongsTo(Pessoa::class, 'id_usuario', 'id_pessoa');
+    }
+
 }
