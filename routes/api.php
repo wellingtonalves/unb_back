@@ -20,7 +20,7 @@ $optionsReadOnly = ['only' => ['index', 'show']];
 Route::group(['prefix' => 'v1'], function () use ($excepts) {
 
     Route::group(['prefix' => 'auth'], function () {
-        Route::namespace('auth')->group(function () {
+        Route::namespace('Auth')->group(function () {
             Route::post('login', 'AuthController@login')->name('login');
             Route::post('logout', 'AuthController@logout')->name('logout')->middleware('auth:api');
             Route::get('user', 'AuthController@user');
