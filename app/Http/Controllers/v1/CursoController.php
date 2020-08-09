@@ -41,4 +41,15 @@ class CursoController extends AbstractController
     {
         return parent::save($request);
     }
+
+    /**
+     * @param CursoRequest $request
+     * @param $id
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function update(CursoRequest $request, $id)
+    {
+        return parent::updateAs($request, $id);
+    }
 }

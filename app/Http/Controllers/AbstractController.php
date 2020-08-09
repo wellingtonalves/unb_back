@@ -60,16 +60,16 @@ abstract class AbstractController extends Controller
      * Store.
      *
      * @param $request
-     * @param $uuid
+     * @param $id
      *
      * @return JsonResponse
      * @throws AuthorizationException
      */
-    public function updateAs($request, $uuid)
+    public function updateAs($request, $id)
     {
 //        $this->authorize('update', $this->model);
-        $data = $this->service->update($request, $uuid);
-        return Response::custom('updated', $data, Response::HTTP_OK);
+        $data = $this->service->update($request, $id);
+        return Response::custom('success_operation', $data, Response::HTTP_OK);
     }
 
     /**

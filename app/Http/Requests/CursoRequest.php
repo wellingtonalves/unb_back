@@ -33,8 +33,6 @@ class CursoRequest extends FormRequest
             'tx_conteudo_programatico' => 'required|string',
             'tx_apresentacao' => 'required|string',
 //            'tx_url_imagem_curso' => 'required|string',
-            'tx_url_video_curso' => 'required|string',
-            'bl_destaque_curso' => 'required|boolean',
         ];
     }
 
