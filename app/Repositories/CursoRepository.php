@@ -11,7 +11,9 @@ class CursoRepository extends AbstractRepository
      *
      * @return string
      */
-    public $relationships = [];
+    public $relationships = [
+        'tematicaCurso'
+    ];
 
     /**
      * FieldSearchable
