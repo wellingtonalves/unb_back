@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 class Curso extends AbstractModel
 {
     protected $table = 'tb_curso';
@@ -21,4 +23,9 @@ class Curso extends AbstractModel
         'nr_ordem_curso',
         'tp_origem_curso'
     ];
+
+    public function tematicaCurso(): BelongsTo
+    {
+        return $this->belongsTo(TematicaCurso::class, 'id_tematica_curso', 'id_tematica_curso');
+    }
 }
