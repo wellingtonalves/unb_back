@@ -53,7 +53,7 @@ abstract class AbstractController extends Controller
     {
 //        $this->authorize('store', $this->model);
         $data = $this->service->create($request);
-        return Response::custom('created', $data, Response::HTTP_CREATED);
+        return Response::custom('success_operation', $data, Response::HTTP_CREATED);
     }
 
     /**

@@ -56,13 +56,11 @@ abstract class AbstractService
      * @param Request $request
      *
      * @return mixed
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
     public function create(Request $request)
     {
         try {
-            $this->repository->create($request->all());
-            return 'Registro criado com sucesso.';
+            return $this->repository->create($request->all());
         } catch (Exception $exception) {
             Log::info($exception->getMessage());
             return new Exception('Erro ao criar. Tente novamente.');
@@ -75,7 +73,6 @@ abstract class AbstractService
      * @param Request $request
      * @param $id
      * @return mixed
-     * @throws \Prettus\Repository\Exceptions\RepositoryException
      */
     public function update(Request $request, $id)
     {
