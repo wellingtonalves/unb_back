@@ -84,6 +84,6 @@ abstract class AbstractController extends Controller
     {
 //        $this->authorize('destroy', $this->model);
         $data = $this->service->destroy($uuid);
-        return Response::custom('deleted', $data, Response::HTTP_OK);
+        return Response::custom('success_operation', $data, Response::HTTP_OK);
     }
 }
