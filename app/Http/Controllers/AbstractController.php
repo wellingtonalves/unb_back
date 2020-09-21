@@ -53,23 +53,23 @@ abstract class AbstractController extends Controller
     {
 //        $this->authorize('store', $this->model);
         $data = $this->service->create($request);
-        return Response::custom('created', $data, Response::HTTP_CREATED);
+        return Response::custom('success_operation', $data, Response::HTTP_CREATED);
     }
 
     /**
      * Store.
      *
      * @param $request
-     * @param $uuid
+     * @param $id
      *
      * @return JsonResponse
      * @throws AuthorizationException
      */
-    public function updateAs($request, $uuid)
+    public function updateAs($request, $id)
     {
 //        $this->authorize('update', $this->model);
-        $data = $this->service->update($request, $uuid);
-        return Response::custom('updated', $data, Response::HTTP_OK);
+        $data = $this->service->update($request, $id);
+        return Response::custom('success_operation', $data, Response::HTTP_OK);
     }
 
     /**
@@ -84,6 +84,6 @@ abstract class AbstractController extends Controller
     {
 //        $this->authorize('destroy', $this->model);
         $data = $this->service->destroy($uuid);
-        return Response::custom('deleted', $data, Response::HTTP_OK);
+        return Response::custom('success_operation', $data, Response::HTTP_OK);
     }
 }

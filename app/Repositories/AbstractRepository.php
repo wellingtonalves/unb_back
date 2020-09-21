@@ -123,7 +123,7 @@ abstract class AbstractRepository extends BaseRepository
     {
         $this->applyCriteria();
         $this->applyScope();
-        $model = $this->model->find($id, $columns);
+        $model = $this->model->with($this->relationships)->find($id, $columns);
         $this->resetModel();
 
         return $this->parserResult($model);

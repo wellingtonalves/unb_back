@@ -11,14 +11,29 @@ class CursoRepository extends AbstractRepository
      *
      * @return string
      */
-    public $relationships = [];
+    public $relationships = [
+        'tematicaCurso'
+    ];
 
     /**
      * FieldSearchable
      *
      * @return string
      */
-    protected $fieldSearchable = [];
+    protected $fieldSearchable = [
+        'id_legado_curso',
+        'id_tematica_curso',
+        'qt_carga_horaria_minima',
+        'tx_nome_curso' =>'like',
+        'tp_situacao_curso',
+        'tx_conteudo_programatico',
+        'tx_apresentacao',
+        'tx_url_imagem_curso',
+        'tx_url_video_curso',
+        'bl_destaque_curso',
+        'nr_ordem_curso',
+        'tp_origem_curso'
+    ];
 
     /**
      * Specify Model class name
