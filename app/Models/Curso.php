@@ -21,7 +21,8 @@ class Curso extends AbstractModel
         'tx_url_video_curso',
         'bl_destaque_curso',
         'nr_ordem_curso',
-        'tp_origem_curso'
+        'tp_origem_curso',
+        'dt_lancamento'
     ];
 
     public function tematicaCurso(): BelongsTo
