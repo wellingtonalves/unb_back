@@ -32,6 +32,7 @@ class CursoRequest extends FormRequest
             'tp_origem_curso' => 'required|string|in:ENAP,MIGRADO',
             'tx_conteudo_programatico' => 'required|string',
             'tx_apresentacao' => 'required|string',
+            'dt_lancamento' => 'required',
 //            'tx_url_imagem_curso' => 'required|string',
         ];
     }
@@ -48,6 +49,7 @@ class CursoRequest extends FormRequest
 //            'tx_url_imagem_curso' => 'required|string',
             'tx_url_video_curso' => 'Url do vídeo do curso',
             'bl_destaque_curso' => 'Destaque do curso',
+            'dt_lancamento' => 'Data do lançamento',
         ];
     }
 }
