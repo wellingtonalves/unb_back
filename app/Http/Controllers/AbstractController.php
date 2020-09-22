@@ -23,7 +23,7 @@ abstract class AbstractController extends Controller
      */
     public function index()
     {
-//        $this->authorize('index', $this->model);
+        $this->authorize('index', $this->model);
         return Response::custom('list', $this->service->all(), Response::HTTP_OK);
     }
 
