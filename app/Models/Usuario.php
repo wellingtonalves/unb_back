@@ -61,4 +61,9 @@ class Usuario extends Authenticatable
         return $this->belongsTo(Pessoa::class, 'id_usuario', 'id_pessoa');
     }
 
+    public function perfil(): BelongsTo
+    {
+        return $this->belongsTo(Perfil::class, 'id_perfil', 'id_perfil');
+    }
+
 }
