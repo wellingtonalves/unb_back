@@ -11,7 +11,8 @@ class UsuarioRepository extends AbstractRepository
      * @var array
      */
     public $relationships = [
-        'pessoa'
+        'pessoa',
+        'perfil.permissao'
     ];
 
     /**

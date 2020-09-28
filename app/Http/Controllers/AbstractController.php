@@ -23,7 +23,7 @@ abstract class AbstractController extends Controller
      */
     public function index()
     {
-//        $this->authorize('index', $this->model);
+        $this->authorize('index', $this->model);
         return Response::custom('list', $this->service->all(), Response::HTTP_OK);
     }
 
@@ -37,7 +37,7 @@ abstract class AbstractController extends Controller
      */
     public function show($uuid)
     {
-//        $this->authorize('show', $this->model);
+        $this->authorize('show', $this->model);
         $data = $this->service->find($uuid);
         return Response::custom('detail', $data, Response::HTTP_OK);
     }
@@ -51,7 +51,7 @@ abstract class AbstractController extends Controller
      */
     public function save($request)
     {
-//        $this->authorize('store', $this->model);
+        $this->authorize('store', $this->model);
         $data = $this->service->create($request);
         return Response::custom('success_operation', $data, Response::HTTP_CREATED);
     }
@@ -67,7 +67,7 @@ abstract class AbstractController extends Controller
      */
     public function updateAs($request, $id)
     {
-//        $this->authorize('update', $this->model);
+        $this->authorize('update', $this->model);
         $data = $this->service->update($request, $id);
         return Response::custom('success_operation', $data, Response::HTTP_OK);
     }
@@ -82,7 +82,7 @@ abstract class AbstractController extends Controller
      */
     public function destroy($uuid)
     {
-//        $this->authorize('destroy', $this->model);
+        $this->authorize('destroy', $this->model);
         $data = $this->service->destroy($uuid);
         return Response::custom('success_operation', $data, Response::HTTP_OK);
     }
