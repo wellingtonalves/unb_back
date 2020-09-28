@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Ava extends AbstractModel
@@ -19,4 +21,14 @@ class Ava extends AbstractModel
         'tx_nome_ava',
         'tp_ava',
     ];
+
+    /**
+     * Orgao
+     *
+     * @return BelongsTo
+     */
+    public function orgao(): BelongsTo
+    {
+        return $this->belongsTo(Orgao::class, 'id_orgao');
+    }
 }

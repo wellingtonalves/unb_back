@@ -2,9 +2,9 @@
 
 namespace App\Repositories;
 
-use App\Models\Ava;
+use App\Models\Orgao;
 
-class AvaRepository extends AbstractRepository
+class OrgaoRepository extends AbstractRepository
 {
     /**
      * Relationships
@@ -12,7 +12,6 @@ class AvaRepository extends AbstractRepository
      * @return string
      */
     public $relationships = [
-        'orgao'
     ];
 
     /**
@@ -21,13 +20,16 @@ class AvaRepository extends AbstractRepository
      * @return string
      */
     protected $fieldSearchable = [
-        'id_orgao',
-        'tx_url' => 'like',
-        'tp_situacao_ava',
-        'tp_operacional',
-        'tx_token',
-        'tx_nome_ava' => 'like',
-        'tp_ava',
+        'id_responsavel_legal',
+        'tx_nome_orgao',
+        'nr_cnpj',
+        'id_vinculo',
+        'id_esfera',
+        'bl_status_orgao',
+        'tx_sigla_orgao',
+        'tx_url_imagem_orgao',
+        'bl_instituicao_parceira',
+        'tx_link_orgao',
     ];
 
     /**
@@ -37,6 +39,6 @@ class AvaRepository extends AbstractRepository
      */
     public function model()
     {
-        return Ava::class;
+        return Orgao::class;
     }
 }
