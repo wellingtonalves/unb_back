@@ -23,6 +23,11 @@ class PermissaoSeeder extends Seeder
             ['tx_nome_permissao' => 'TEMATICA_CURSO_INCLUIR'],
             ['tx_nome_permissao' => 'TEMATICA_CURSO_EDITAR'],
             ['tx_nome_permissao' => 'TEMATICA_CURSO_EXCLUIR'],
+            ['tx_nome_permissao' => 'PESSOA_LISTAR'],
+            ['tx_nome_permissao' => 'PESSOA_DETALHAR'],
+            ['tx_nome_permissao' => 'PESSOA_INCLUIR'],
+            ['tx_nome_permissao' => 'PESSOA_EDITAR'],
+            ['tx_nome_permissao' => 'PESSOA_EXCLUIR'],
         ];
 
         foreach ($permissao as $value) {

@@ -18,7 +18,6 @@ abstract class AbstractPolicy
             return true;
         }
 
-        //TODO - fazer os relacionamentos abaixo na model do usuário.
         return in_array($permission, array_column($user->perfil->permissao->toArray(), 'tx_nome_permissao'));
     }
 }
