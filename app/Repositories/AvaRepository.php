@@ -37,5 +37,4 @@ class AvaRepository extends AbstractRepository
         return Ava::class;
     }
 
-    
 }

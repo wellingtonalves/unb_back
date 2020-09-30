@@ -13,7 +13,6 @@ class AvaRequest extends FormRequest
      */
     public function authorize()
     {
-        //TODO - trocar para false quando implementar as policies
         return true;
     }
 
