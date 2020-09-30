@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-
 use App\Models\Curso;
 
 class CursoObserver
@@ -20,47 +19,4 @@ class CursoObserver
         return $curso;
     }
 
-    /**
-     * Handle the curso "updated" event.
-     *
-     * @param  \App\Curso  $curso
-     * @return void
-     */
-    public function updated(Curso $curso)
-    {
-        //
-    }
-
-    /**
-     * Handle the curso "deleted" event.
-     *
-     * @param  \App\Curso  $curso
-     * @return void
-     */
-    public function deleted(Curso $curso)
-    {
-        //
-    }
-
-    /**
-     * Handle the curso "restored" event.
-     *
-     * @param  \App\Curso  $curso
-     * @return void
-     */
-    public function restored(Curso $curso)
-    {
-        //
-    }
-
-    /**
-     * Handle the curso "force deleted" event.
-     *
-     * @param  \App\Curso  $curso
-     * @return void
-     */
-    public function forceDeleted(Curso $curso)
-    {
-        //
-    }
 }

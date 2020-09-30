@@ -24,6 +24,11 @@ class PerfilPermissaoSeeder extends Seeder
             ['id_perfil' => 1, 'id_permissao' => 8],
             ['id_perfil' => 1, 'id_permissao' => 9],
             ['id_perfil' => 1, 'id_permissao' => 10],
+            ['id_perfil' => 1, 'id_permissao' => 11],
+            ['id_perfil' => 1, 'id_permissao' => 12],
+            ['id_perfil' => 1, 'id_permissao' => 13],
+            ['id_perfil' => 1, 'id_permissao' => 14],
+            ['id_perfil' => 1, 'id_permissao' => 15],
         ];
 
         foreach ($perfilPermissao as $value) {
