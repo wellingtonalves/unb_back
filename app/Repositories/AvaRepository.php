@@ -21,11 +21,8 @@ class AvaRepository extends AbstractRepository
      * @return string
      */
     protected $fieldSearchable = [
-        'id_orgao',
         'tx_url' => 'like',
         'tp_situacao_ava',
-        'tp_operacional',
-        'tx_token',
         'tx_nome_ava' => 'like',
         'tp_ava',
     ];
@@ -39,4 +36,6 @@ class AvaRepository extends AbstractRepository
     {
         return Ava::class;
     }
+
+    
 }

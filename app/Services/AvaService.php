@@ -21,4 +21,18 @@ class AvaService extends AbstractService
     {
         $this->repository = $repository;
     }
+
+    /**
+     *
+     * @param int $id
+     * @return AvaRepository
+     * @throws Exception
+     */
+    public function find($id)
+    {
+        $ava = parent::find($id);
+        $ava->tp_ava = trim($ava->tp_ava);
+        
+        return $ava;
+    }
 }
