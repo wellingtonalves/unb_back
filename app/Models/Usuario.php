@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use AlexAlexandre\MappableModels\Traits\HasNestedAttributes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,7 +10,7 @@ use Laravel\Passport\HasApiTokens;
 
 class Usuario extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable, HasNestedAttributes;
 //    use SoftDeletes;
 
     protected $table        = 'tb_usuario';
@@ -33,14 +34,6 @@ class Usuario extends Authenticatable
         'tx_senha_usuario',
         'remember_token',
     ];
-
-    /**
-     * TODO implementar as models (perfil, permissao, perfil-permissao) pra então implementar
-     * todas as policies e começar a utilizar a forma correta de login
-     *
-     * @var array
-     */
-//    protected $with = ['perfil'];
 
     /**
      * @param $username

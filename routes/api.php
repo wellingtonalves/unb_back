@@ -31,6 +31,7 @@ Route::group(['prefix' => 'v1'], function () use ($excepts) {
         Route::resource('curso', 'CursoController', ['except' => $excepts]);
         Route::resource('tematica-curso', 'TematicaCursoController', ['except' => $excepts]);
         Route::resource('pessoa', 'PessoaController', ['except' => $excepts]);
+        Route::resource('usuario', 'UsuarioController', ['except' => $excepts]);
     });
 
 });

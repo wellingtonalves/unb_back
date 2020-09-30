@@ -22,9 +22,6 @@ class UsuarioRepository extends AbstractRepository
         'id_situacao_usuario',
         'id_perfil',
         'tx_login_usuario',
-        'tp_metodo_autenticacao',
-        'dt_alteracao_login',
-        'id_rede_social'
     ];
 
     /**

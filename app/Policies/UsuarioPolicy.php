@@ -4,7 +4,7 @@ namespace App\Policies;
 
 use App\Models\Usuario;
 
-class PessoaPolicy extends AbstractPolicy
+class UsuarioPolicy extends AbstractPolicy
 {
 
     /**
@@ -13,7 +13,7 @@ class PessoaPolicy extends AbstractPolicy
      */
     public function index(Usuario $usuario)
     {
-        return self::check('PESSOA_LISTAR', $usuario);
+        return self::check('USUARIO_LISTAR', $usuario);
     }
 
     /**
@@ -22,7 +22,7 @@ class PessoaPolicy extends AbstractPolicy
      */
     public function show(Usuario $usuario)
     {
-        return self::check('PESSOA_DETALHAR', $usuario);
+        return self::check('USUARIO_DETALHAR', $usuario);
     }
 
     /**
@@ -31,7 +31,7 @@ class PessoaPolicy extends AbstractPolicy
      */
     public function store(Usuario $usuario)
     {
-        return self::check('PESSOA_INCLUIR', $usuario);
+        return self::check('USUARIO_INCLUIR', $usuario);
     }
 
     /**
@@ -40,7 +40,7 @@ class PessoaPolicy extends AbstractPolicy
      */
     public function update(Usuario $usuario)
     {
-        return self::check('PESSOA_EDITAR', $usuario);
+        return self::check('USUARIO_EDITAR', $usuario);
     }
 
     /**
@@ -49,6 +49,6 @@ class PessoaPolicy extends AbstractPolicy
      */
     public function destroy(Usuario $usuario)
     {
-        return self::check('PESSOA_EXCLUIR', $usuario);
+        return self::check('USUARIO_EXCLUIR', $usuario);
     }
 }
