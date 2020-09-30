@@ -30,6 +30,8 @@ Route::group(['prefix' => 'v1'], function () use ($excepts) {
     Route::namespace('v1')->middleware('auth:api')->group(function () use ($excepts) {
         Route::resource('curso', 'CursoController', ['except' => $excepts]);
         Route::resource('tematica-curso', 'TematicaCursoController', ['except' => $excepts]);
+        Route::resource('ava', 'AvaController', ['except' => $excepts]);
+        Route::resource('orgao', 'OrgaoController', ['except' => $excepts]);
     });
 
 });
