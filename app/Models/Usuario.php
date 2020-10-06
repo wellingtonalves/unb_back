@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Models;
+use AlexAlexandre\MappableModels\Traits\HasNestedAttributes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -9,7 +12,7 @@ use Laravel\Passport\HasApiTokens;
 
 class Usuario extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable, HasNestedAttributes;
 //    use SoftDeletes;
 
     protected $table        = 'tb_usuario';
@@ -35,14 +38,6 @@ class Usuario extends Authenticatable
     ];
 
     /**
-     * TODO implementar as models (perfil, permissao, perfil-permissao) pra então implementar
-     * todas as policies e começar a utilizar a forma correta de login
-     *
-     * @var array
-     */
-//    protected $with = ['perfil'];
-
-    /**
      * @param $username
      * @return mixed
      */
@@ -59,6 +54,16 @@ class Usuario extends Authenticatable
     public function pessoa(): BelongsTo
     {
         return $this->belongsTo(Pessoa::class, 'id_usuario', 'id_pessoa');
+    }
+
+    public function perfil(): BelongsTo
+    {
+        return $this->belongsTo(Perfil::class, 'id_perfil', 'id_perfil');
+    }
+
+    public function situacaoUsuario(): HasOne
+    {
+        return $this->hasOne(SituacaoUsuario::class, 'id_situacao_usuario', 'id_situacao_usuario');
     }
 
 }
