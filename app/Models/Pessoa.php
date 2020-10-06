@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -30,6 +31,11 @@ class Pessoa extends AbstractModel
     public function usuario(): HasOne
     {
         return $this->hasOne(Usuario::class, 'id_usuario', 'id_pessoa');
+    }
+
+    public function pais(): BelongsTo
+    {
+        return $this->belongsTo(Pais::class, 'sg_pais_nacionalidade');
     }
 
 }
