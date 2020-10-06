@@ -12,7 +12,8 @@ class UsuarioRepository extends AbstractRepository
      */
     public $relationships = [
         'pessoa',
-        'perfil.permissao'
+        'perfil.permissao',
+        'situacaoUsuario'
     ];
 
     /**
@@ -21,7 +22,10 @@ class UsuarioRepository extends AbstractRepository
     protected $fieldSearchable = [
         'id_situacao_usuario',
         'id_perfil',
-        'tx_login_usuario',
+        'tx_login_usuario' => 'like',
+        'pessoa.tx_nome_pessoa' => 'like',
+        'pessoa.tx_email_pessoa' => 'like',
+        'pessoa.nr_cpf'
     ];
 
     /**

@@ -3,6 +3,8 @@
 namespace App\Models;
 use AlexAlexandre\MappableModels\Traits\HasNestedAttributes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -57,6 +59,11 @@ class Usuario extends Authenticatable
     public function perfil(): BelongsTo
     {
         return $this->belongsTo(Perfil::class, 'id_perfil', 'id_perfil');
+    }
+
+    public function situacaoUsuario(): HasOne
+    {
+        return $this->hasOne(SituacaoUsuario::class, 'id_situacao_usuario', 'id_situacao_usuario');
     }
 
 }
