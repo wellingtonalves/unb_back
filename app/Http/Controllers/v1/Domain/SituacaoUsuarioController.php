@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\v1;
+namespace App\Http\Controllers\v1\Domain;
 
 use App\Http\Controllers\AbstractController;
 use App\Models\SituacaoUsuario;
