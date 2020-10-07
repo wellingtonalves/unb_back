@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Domain;
 
+use App\Policies\AbstractPolicy;
 use App\Models\Usuario;
 
-class PaisPolicy extends AbstractPolicy
+class SituacaoUsuarioPolicy extends AbstractPolicy
 {
 
     /**
@@ -13,7 +14,7 @@ class PaisPolicy extends AbstractPolicy
      */
     public function index(Usuario $usuario)
     {
-        return self::check('PAIS_LISTAR', $usuario);
+        return self::check('SITUACAO_USUARIO_LISTAR', $usuario);
     }
 
     /**
@@ -22,7 +23,7 @@ class PaisPolicy extends AbstractPolicy
      */
     public function show(Usuario $usuario)
     {
-        return self::check('PAIS_DETALHAR', $usuario);
+        return self::check('SITUACAO_USUARIO_DETALHAR', $usuario);
     }
 
 }
