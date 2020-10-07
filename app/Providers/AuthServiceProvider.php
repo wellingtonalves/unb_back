@@ -19,6 +19,8 @@ class AuthServiceProvider extends ServiceProvider
          'App\Models\Usuario' => 'App\Policies\UsuarioPolicy',
          'App\Models\Ava' => 'App\Policies\AvaPolicy',
          'App\Models\Orgao' => 'App\Policies\OrgaoPolicy',
+         'App\Models\Perfil' => 'App\Policies\PerfilPolicy',
+         'App\Models\SituacaoUsuario' => 'App\Policies\SituacaoUsuarioPolicy',
     ];
 
     /**

@@ -2,18 +2,17 @@
 
 namespace App\Repositories;
 
-use App\Models\Ava;
 
-class AvaRepository extends AbstractRepository
+use App\Models\SituacaoUsuario;
+
+class SituacaoUsuarioRepository extends AbstractRepository
 {
     /**
      * Relationships
      *
      * @return string
      */
-    public $relationships = [
-        'orgao'
-    ];
+    public $relationships = [];
 
     /**
      * FieldSearchable
@@ -21,10 +20,8 @@ class AvaRepository extends AbstractRepository
      * @return string
      */
     protected $fieldSearchable = [
-        'tx_url' => 'like',
-        'tp_situacao_ava',
-        'tx_nome_ava' => 'like',
-        'tp_ava',
+        'id_situacao_usuario',
+        'tx_nome_situacao_usuario' => 'like',
     ];
 
     /**
@@ -34,7 +31,7 @@ class AvaRepository extends AbstractRepository
      */
     public function model()
     {
-        return Ava::class;
+        return SituacaoUsuario::class;
     }
 
 }

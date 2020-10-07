@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pessoa extends AbstractModel
 {
-//    use SoftDeletes;
 
     protected $table        = 'tb_pessoa';
     protected $primaryKey   = 'id_pessoa';
@@ -31,7 +30,6 @@ class Pessoa extends AbstractModel
     public function usuario(): HasOne
     {
         return $this->hasOne(Usuario::class, 'id_usuario', 'id_pessoa');
-//        return $this->belongsTo(Usuario::class,'id_pessoa','id_usuario');
     }
 
 }

@@ -7,7 +7,7 @@ use App\Http\Requests\AvaRequest;
 use App\Models\Ava;
 use App\Services\AvaService;
 use Illuminate\Auth\Access\AuthorizationException;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Illuminate\Http\JsonResponse;
 
 class AvaController extends AbstractController
 {
