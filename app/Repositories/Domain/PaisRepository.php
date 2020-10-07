@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Domain;
 
+use App\Repositories\AbstractRepository;
+use App\Models\Domain\Pais;
 
-use App\Models\Domain\Municipio;
-
-class MunicipioRepository extends AbstractRepository
+class PaisRepository extends AbstractRepository
 {
     /**
      * Relationships
@@ -20,8 +20,8 @@ class MunicipioRepository extends AbstractRepository
      * @return string
      */
     protected $fieldSearchable = [
-        'sg_uf',
-        'tx_nome_municipio' => 'like',
+        'sg_pais',
+        'tx_nome_pais' => 'like',
     ];
 
     /**
@@ -31,7 +31,7 @@ class MunicipioRepository extends AbstractRepository
      */
     public function model()
     {
-        return Municipio::class;
+        return Pais::class;
     }
 
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\v1\Domain;
 
 use App\Http\Controllers\AbstractController;
 use App\Models\Domain\Municipio;
-use App\Services\MunicipioService;
+use App\Services\Domain\MunicipioService;
 
 class MunicipioController extends AbstractController
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Domain;
 
-
-use App\Repositories\SituacaoUsuarioRepository;
+use App\Services\AbstractService;
+use App\Repositories\Domain\SituacaoUsuarioRepository;
 
 class SituacaoUsuarioService extends AbstractService
 {

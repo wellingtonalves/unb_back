@@ -3,8 +3,8 @@
 namespace App\Repositories\Domain;
 
 
-use App\Models\Domain\UF;
 use App\Repositories\AbstractRepository;
+use App\Models\Domain\UF;
 
 class UfRepository extends AbstractRepository
 {

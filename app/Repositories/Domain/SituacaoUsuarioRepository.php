@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Domain;
 
+use App\Repositories\AbstractRepository;
+use App\Models\Domain\SituacaoUsuario;
 
-use App\Models\Domain\Pais;
-
-class PaisRepository extends AbstractRepository
+class SituacaoUsuarioRepository extends AbstractRepository
 {
     /**
      * Relationships
@@ -20,8 +20,8 @@ class PaisRepository extends AbstractRepository
      * @return string
      */
     protected $fieldSearchable = [
-        'sg_pais',
-        'tx_nome_pais' => 'like',
+        'id_situacao_usuario',
+        'tx_nome_situacao_usuario' => 'like',
     ];
 
     /**
@@ -31,7 +31,7 @@ class PaisRepository extends AbstractRepository
      */
     public function model()
     {
-        return Pais::class;
+        return SituacaoUsuario::class;
     }
 
 }

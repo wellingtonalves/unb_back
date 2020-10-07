@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Domain;
 
-
-use App\Repositories\PaisRepository;
+use App\Services\AbstractService;
+use App\Repositories\Domain\PaisRepository;
 
 class PaisService extends AbstractService
 {

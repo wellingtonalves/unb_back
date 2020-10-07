@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Domain;
 
-
-use App\Repositories\MunicipioRepository;
+use App\Services\AbstractService;
+use App\Repositories\Domain\MunicipioRepository;
 
 class MunicipioService extends AbstractService
 {

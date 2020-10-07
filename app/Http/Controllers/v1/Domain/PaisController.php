@@ -4,7 +4,7 @@ namespace App\Http\Controllers\v1\Domain;
 
 use App\Http\Controllers\AbstractController;
 use App\Models\Domain\Pais;
-use App\Services\PaisService;
+use App\Services\Domain\PaisService;
 
 class PaisController extends AbstractController
 {

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\v1\Domain;
 
 use App\Http\Controllers\AbstractController;
 use App\Models\Domain\SituacaoUsuario;
-use App\Services\SituacaoUsuarioService;
+use App\Services\Domain\SituacaoUsuarioService;
 
 class SituacaoUsuarioController extends AbstractController
 {
