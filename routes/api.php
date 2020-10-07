@@ -38,6 +38,7 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
         Route::namespace('Domain')->group(function () use ($optionsReadOnly) {
             Route::resource('situacao-usuario', 'SituacaoUsuarioController', $optionsReadOnly);
             Route::resource('pais', 'PaisController', $optionsReadOnly);
+            Route::resource('municipio', 'MunicipioController', $optionsReadOnly);
         });
     });
 

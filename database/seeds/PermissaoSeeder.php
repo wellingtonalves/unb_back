@@ -37,6 +37,8 @@ class PermissaoSeeder extends Seeder
             ['tx_nome_permissao' => 'SITUACAO_USUARIO_DETALHAR'],
             ['tx_nome_permissao' => 'PAIS_LISTAR'],
             ['tx_nome_permissao' => 'PAIS_DETALHAR'],
+            ['tx_nome_permissao' => 'MUNICIPIO_LISTAR'],
+            ['tx_nome_permissao' => 'MUNICIPIO_DETALHAR'],
         ];
 
         foreach ($permissao as $value) {
