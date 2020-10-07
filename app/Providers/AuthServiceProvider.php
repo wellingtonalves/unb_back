@@ -18,8 +18,8 @@ class AuthServiceProvider extends ServiceProvider
          'App\Models\TematicaCurso' => 'App\Policies\TematicaCursoPolicy',
          'App\Models\Usuario' => 'App\Policies\UsuarioPolicy',
          'App\Models\Perfil' => 'App\Policies\PerfilPolicy',
-         'App\Models\SituacaoUsuario' => 'App\Policies\SituacaoUsuarioPolicy',
-         'App\Models\Pais' => 'App\Policies\PaisPolicy',
+         'App\Models\Domain\SituacaoUsuario' => 'App\Policies\SituacaoUsuarioPolicy',
+         'App\Models\Domain\Pais' => 'App\Policies\PaisPolicy',
     ];
 
     /**

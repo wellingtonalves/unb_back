@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1\Domain;
 
 use App\Http\Controllers\AbstractController;
-use App\Models\Pais;
+use App\Models\Domain\Pais;
 use App\Services\PaisService;
 
 class PaisController extends AbstractController

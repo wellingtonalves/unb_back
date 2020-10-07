@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 
-use App\Models\SituacaoUsuario;
+use App\Models\Domain\SituacaoUsuario;
 
 class SituacaoUsuarioRepository extends AbstractRepository
 {

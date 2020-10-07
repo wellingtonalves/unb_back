@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 
-use App\Models\Pais;
+use App\Models\Domain\Pais;
 
 class PaisRepository extends AbstractRepository
 {

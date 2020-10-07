@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1\Domain;
 
 use App\Http\Controllers\AbstractController;
-use App\Models\SituacaoUsuario;
+use App\Models\Domain\SituacaoUsuario;
 use App\Services\SituacaoUsuarioService;
 
 class SituacaoUsuarioController extends AbstractController
