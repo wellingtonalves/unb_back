@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Models;
+use App\Models\Domain\Pais;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pessoa extends AbstractModel
 {
