@@ -33,7 +33,7 @@ class MoodleService
      */
     public function buscaInfoSiteMoodle($url, $token)
     {
-        $this->repository->setAva($url, $token);
+        $this->repository->setAvaMoodle($url, $token);
         $siteInfo = $this->verificaErro($this->repository->getSiteInfo());
         if(empty($siteInfo->sitename)) {
             return new Exception('Não foi possível consultar as informações do AVA.');

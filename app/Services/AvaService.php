@@ -21,13 +21,19 @@ class AvaService extends AbstractService
     protected $moodleService;
 
     /**
+     * @var CanvasService
+     */
+    protected $canvasService;
+
+    /**
      * AvaService constructor.
      * @param AvaRepository $repository
      */
-    public function __construct(AvaRepository $repository, MoodleService $moodleService)
+    public function __construct(AvaRepository $repository, MoodleService $moodleService, CanvasService $canvasService)
     {
         $this->repository = $repository;
         $this->moodleService = $moodleService;
+        $this->canvasService = $canvasService;
     }
 
     /**
@@ -82,8 +88,7 @@ class AvaService extends AbstractService
         }
 
         $ava = parent::update($request, $id);
-        $ava->statusOperacao = $statusOperacao;
-        return $ava;
+        return $ava ? $statusOperacao : $ava;
     }
     
     /**
