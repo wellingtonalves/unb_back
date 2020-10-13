@@ -77,7 +77,7 @@ abstract class AbstractService
     public function update(Request $request, $id)
     {
         try {
-            return $this->repository->find($id)->update($request->all());
+            return $this->repository->update($request->all(), $id);
         } catch (Exception $exception) {
             Log::info($exception->getMessage());
             return new Exception('Erro ao atualizar. Tente novamente.');
