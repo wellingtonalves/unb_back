@@ -75,15 +75,15 @@ abstract class AbstractController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param $uuid
+     * @param $id
      *
      * @return JsonResponse
      * @throws Exception
      */
-    public function destroy($uuid)
+    public function destroy($id)
     {
         $this->authorize('destroy', $this->model);
-        $data = $this->service->destroy($uuid);
+        $data = $this->service->destroy($id);
         return Response::custom('success_operation', $data, Response::HTTP_OK);
     }
 }
