@@ -35,6 +35,7 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
         Route::resource('usuario', 'UsuarioController', ['except' => $excepts]);
         Route::resource('situacao-usuario', 'SituacaoUsuarioController', $optionsReadOnly);
         Route::resource('perfil', 'PerfilController', ['except' => $excepts]);
+        Route::resource('tarefa-agendada', 'TarefaAgendadaController', ['except' => $excepts]);
     });
 
 });

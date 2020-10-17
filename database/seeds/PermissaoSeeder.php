@@ -48,6 +48,11 @@ class PermissaoSeeder extends Seeder
             ['tx_nome_permissao' => 'SITUACAO_USUARIO_INCLUIR'],
             ['tx_nome_permissao' => 'SITUACAO_USUARIO_EDITAR'],
             ['tx_nome_permissao' => 'SITUACAO_USUARIO_EXCLUIR'],
+            ['tx_nome_permissao' => 'TAREFA_AGENDADA_LISTAR'],
+            ['tx_nome_permissao' => 'TAREFA_AGENDADA_DETALHAR'],
+            ['tx_nome_permissao' => 'TAREFA_AGENDADA_INCLUIR'],
+            ['tx_nome_permissao' => 'TAREFA_AGENDADA_EDITAR'],
+            ['tx_nome_permissao' => 'TAREFA_AGENDADA_EXCLUIR'],
         ];
 
         foreach ($permissao as $value) {
