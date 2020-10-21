@@ -12,7 +12,9 @@ class PerfilRepository extends AbstractRepository
      *
      * @return string
      */
-    public $relationships = [];
+    public $relationships = [
+        'permissao'
+    ];
 
     /**
      * FieldSearchable
