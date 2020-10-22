@@ -28,6 +28,16 @@ class PermissaoSeeder extends Seeder
             ['tx_nome_permissao' => 'USUARIO_INCLUIR'],
             ['tx_nome_permissao' => 'USUARIO_EDITAR'],
             ['tx_nome_permissao' => 'USUARIO_EXCLUIR'],
+            ['tx_nome_permissao' => 'AVA_LISTAR'],
+            ['tx_nome_permissao' => 'AVA_DETALHAR'],
+            ['tx_nome_permissao' => 'AVA_INCLUIR'],
+            ['tx_nome_permissao' => 'AVA_EDITAR'],
+            ['tx_nome_permissao' => 'AVA_EXCLUIR'],
+            ['tx_nome_permissao' => 'ORGAO_LISTAR'],
+            ['tx_nome_permissao' => 'ORGAO_DETALHAR'],
+            ['tx_nome_permissao' => 'ORGAO_INCLUIR'],
+            ['tx_nome_permissao' => 'ORGAO_EDITAR'],
+            ['tx_nome_permissao' => 'ORGAO_EXCLUIR'],
             ['tx_nome_permissao' => 'PERFIL_LISTAR'],
             ['tx_nome_permissao' => 'PERFIL_DETALHAR'],
             ['tx_nome_permissao' => 'PERFIL_INCLUIR'],
@@ -49,7 +59,7 @@ class PermissaoSeeder extends Seeder
         ];
 
         foreach ($permissao as $value) {
-            Permissao::create($value);
+            Permissao::firstOrCreate(['tx_nome_permissao' => $value]);
         }
     }
 }

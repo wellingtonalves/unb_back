@@ -8,6 +8,7 @@ use App\Models\Ava;
 use App\Services\AvaService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class AvaController extends AbstractController
 {
@@ -34,7 +35,9 @@ class AvaController extends AbstractController
      */
     public function store(AvaRequest $request)
     {
-        return parent::save($request);
+        $this->authorize('store', $this->model);
+        $data = $this->service->create($request);
+        return Response::custom($data->statusOperacao, $data, Response::HTTP_CREATED);
     }
 
     /**
