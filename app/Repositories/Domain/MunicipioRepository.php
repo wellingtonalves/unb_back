@@ -1,20 +1,18 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Domain;
 
+use App\Repositories\AbstractRepository;
+use App\Models\Domain\Municipio;
 
-use App\Models\Perfil;
-
-class PerfilRepository extends AbstractRepository
+class MunicipioRepository extends AbstractRepository
 {
     /**
      * Relationships
      *
      * @return string
      */
-    public $relationships = [
-        'permissao'
-    ];
+    public $relationships = [];
 
     /**
      * FieldSearchable
@@ -22,8 +20,8 @@ class PerfilRepository extends AbstractRepository
      * @return string
      */
     protected $fieldSearchable = [
-        'id_perfil',
-        'tx_nome_perfil' => 'like',
+        'sg_uf',
+        'tx_nome_municipio' => 'like',
     ];
 
     /**
@@ -33,7 +31,7 @@ class PerfilRepository extends AbstractRepository
      */
     public function model()
     {
-        return Perfil::class;
+        return Municipio::class;
     }
 
 }

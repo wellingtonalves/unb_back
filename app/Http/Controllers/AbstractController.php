@@ -24,7 +24,7 @@ abstract class AbstractController extends Controller
     public function index()
     {
         $this->authorize('index', $this->model);
-        return Response::custom('list', $this->service->all(), Response::HTTP_OK);
+        return $this->service->all();
     }
 
     /**
@@ -38,8 +38,7 @@ abstract class AbstractController extends Controller
     public function show($uuid)
     {
         $this->authorize('show', $this->model);
-        $data = $this->service->find($uuid);
-        return Response::custom('detail', $data, Response::HTTP_OK);
+        return $this->service->find($uuid);
     }
 
     /**
@@ -52,8 +51,7 @@ abstract class AbstractController extends Controller
     public function save($request)
     {
         $this->authorize('store', $this->model);
-        $data = $this->service->create($request);
-        return Response::custom('success_operation', $data, Response::HTTP_CREATED);
+        return $this->service->create($request);
     }
 
     /**
@@ -68,22 +66,20 @@ abstract class AbstractController extends Controller
     public function updateAs($request, $id)
     {
         $this->authorize('update', $this->model);
-        $data = $this->service->update($request, $id);
-        return Response::custom('success_operation', $data, Response::HTTP_OK);
+        return $this->service->update($request, $id);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param $uuid
+     * @param $id
      *
      * @return JsonResponse
      * @throws Exception
      */
-    public function destroy($uuid)
+    public function destroy($id)
     {
         $this->authorize('destroy', $this->model);
-        $data = $this->service->destroy($uuid);
-        return Response::custom('success_operation', $data, Response::HTTP_OK);
+        return $this->service->destroy($id);
     }
 }

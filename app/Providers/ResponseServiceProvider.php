@@ -30,8 +30,8 @@ class ResponseServiceProvider extends ServiceProvider
 
             if ($response instanceof \Exception) {
                 $data['message'] = __('messages.' . $message);
-                $data['data'] = $response->getMessage();
-                $data['status'] = Response::HTTP_NOT_FOUND;
+                $data['status'] = Response::HTTP_INTERNAL_SERVER_ERROR;
+                $data['messageType'] = __('messages.message_type.erro');
 
                 return response()->json($data, $data['status']);
             }
