@@ -17,8 +17,14 @@ class AuthServiceProvider extends ServiceProvider
          'App\Models\Curso' => 'App\Policies\CursoPolicy',
          'App\Models\TematicaCurso' => 'App\Policies\TematicaCursoPolicy',
          'App\Models\Usuario' => 'App\Policies\UsuarioPolicy',
+         'App\Models\Ava' => 'App\Policies\AvaPolicy',
+         'App\Models\Orgao' => 'App\Policies\OrgaoPolicy',
          'App\Models\Perfil' => 'App\Policies\PerfilPolicy',
-         'App\Models\SituacaoUsuario' => 'App\Policies\SituacaoUsuarioPolicy',
+         'App\Models\Permissao' => 'App\Policies\PermissaoPolicy',
+         'App\Models\Domain\SituacaoUsuario' => 'App\Policies\Domain\SituacaoUsuarioPolicy',
+         'App\Models\Domain\Pais' => 'App\Policies\Domain\PaisPolicy',
+         'App\Models\Domain\Municipio' => 'App\Policies\Domain\MunicipioPolicy',
+         'App\Models\Domain\UF' => 'App\Policies\Domain\UfPolicy',
     ];
 
     /**

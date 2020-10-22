@@ -1,20 +1,18 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Domain;
 
+use App\Repositories\AbstractRepository;
+use App\Models\Domain\Pais;
 
-use App\Models\Perfil;
-
-class PerfilRepository extends AbstractRepository
+class PaisRepository extends AbstractRepository
 {
     /**
      * Relationships
      *
      * @return string
      */
-    public $relationships = [
-        'permissao'
-    ];
+    public $relationships = [];
 
     /**
      * FieldSearchable
@@ -22,8 +20,8 @@ class PerfilRepository extends AbstractRepository
      * @return string
      */
     protected $fieldSearchable = [
-        'id_perfil',
-        'tx_nome_perfil' => 'like',
+        'sg_pais',
+        'tx_nome_pais' => 'like',
     ];
 
     /**
@@ -33,7 +31,7 @@ class PerfilRepository extends AbstractRepository
      */
     public function model()
     {
-        return Perfil::class;
+        return Pais::class;
     }
 
 }

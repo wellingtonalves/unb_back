@@ -14,6 +14,14 @@ class Perfil extends AbstractModel
         'tx_nome_perfil'
     ];
 
+    /**
+     * The nested's (relations)
+     * @var array
+     */
+    public $nested = [
+        'permissao'
+    ];
+
     public function user(): HasMany
     {
         return $this->hasMany(Usuario::class, 'id_perfil', 'id_perfil');
