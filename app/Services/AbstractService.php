@@ -6,6 +6,7 @@ use App\Repositories\AbstractRepository;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Response;
 
 abstract class AbstractService
 {
@@ -25,10 +26,11 @@ abstract class AbstractService
             $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
             $data = $this->repository->with($this->repository->relationships);
             $perPage = request()->has('per_page') ? request()->per_page : null;
-            return request()->pagination == 'false' ? $data->all() : $data->paginate($perPage);
+            $data = request()->pagination == 'false' ? $data->all() : $data->paginate($perPage);
+            return Response::custom('success_operation', $data);
         } catch (Exception $exception) {
             Log::info($exception->getMessage());
-            return new Exception('Erro ao listar. Tente novamente.');
+            return Response::custom('error_operation', $exception);
         }
     }
 
@@ -43,10 +45,11 @@ abstract class AbstractService
     public function find($id)
     {
         try {
-            return $this->repository->with($this->repository->relationships)->find($id);
+            $data = $this->repository->with($this->repository->relationships)->find($id);
+            return Response::custom('success_operation', $data);
         } catch (Exception $exception) {
             Log::info($exception->getMessage());
-            return new Exception('Erro ao detalhar. Tente novamente.');
+            return Response::custom('error_operation', $exception);
         }
     }
 
@@ -60,10 +63,11 @@ abstract class AbstractService
     public function create(Request $request)
     {
         try {
-            return $this->repository->create($request->all());
+            $data = $this->repository->create($request->all());
+            return Response::custom('success_operation', $data);
         } catch (Exception $exception) {
             Log::info($exception->getMessage());
-            return new Exception('Erro ao criar. Tente novamente.');
+            return Response::custom('error_operation', $exception);
         }
     }
 
@@ -77,10 +81,11 @@ abstract class AbstractService
     public function update(Request $request, $id)
     {
         try {
-            return $this->repository->update($request->all(), $id);
+            $data = $this->repository->update($request->all(), $id);
+            return Response::custom('success_operation', $data);
         } catch (Exception $exception) {
             Log::info($exception->getMessage());
-            return new Exception('Erro ao atualizar. Tente novamente.');
+            return Response::custom('error_operation', $exception);
         }
     }
 
@@ -96,10 +101,10 @@ abstract class AbstractService
     {
         try {
             $this->repository->find($id)->delete();
-            return 'Registro excluído com sucesso.';
+            return Response::custom('success_operation');
         } catch (Exception $exception) {
             Log::info($exception->getMessage());
-            return new Exception('Erro ao excluir. Tente novamente.');
+            return Response::custom('error_operation', $exception);
         }
     }
 }
