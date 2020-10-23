@@ -15,9 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 $excepts = ['create', 'edit'];
 $optionsReadOnly = ['only' => ['index', 'show']];
+$optionsReadView = ['only' => ['show']];
 
 
-Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
+Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly, $optionsReadView) {
 
     Route::group(['prefix' => 'auth'], function () {
         Route::namespace('Auth')->group(function () {
@@ -27,14 +28,7 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
         });
     });
 
-    Route::namespace('v1')->middleware('auth:api')->group(function () use ($excepts, $optionsReadOnly) {
-        Route::resource('curso', 'CursoController', ['except' => $excepts]);
-        Route::resource('tematica-curso', 'TematicaCursoController', ['except' => $excepts]);
-        Route::resource('ava', 'AvaController', ['except' => $excepts]);
-        Route::resource('orgao', 'OrgaoController', ['except' => $excepts]);
-        Route::resource('usuario', 'UsuarioController', ['except' => $excepts]);
-        Route::resource('perfil', 'PerfilController', ['except' => $excepts]);
-        Route::resource('permissao', 'PermissaoController', ['except' => $excepts]);
+    Route::namespace('v1')->middleware('auth:api')->group(function () use ($excepts, $optionsReadOnly, $optionsReadView) {
 
         Route::namespace('Domain')->group(function () use ($optionsReadOnly) {
             Route::resource('situacao-usuario', 'SituacaoUsuarioController', $optionsReadOnly);
@@ -42,6 +36,18 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
             Route::resource('municipio', 'MunicipioController', $optionsReadOnly);
             Route::resource('uf', 'UfController', $optionsReadOnly);
         });
+
+        Route::group(['prefix' => 'vw'], function () use ($optionsReadView) {
+            Route::resource('valida-certificado', 'VwValidacaoCertificadoController', $optionsReadView);
+        });
+
+        Route::resource('curso', 'CursoController', ['except' => $excepts]);
+        Route::resource('tematica-curso', 'TematicaCursoController', ['except' => $excepts]);
+        Route::resource('ava', 'AvaController', ['except' => $excepts]);
+        Route::resource('orgao', 'OrgaoController', ['except' => $excepts]);
+        Route::resource('usuario', 'UsuarioController', ['except' => $excepts]);
+        Route::resource('perfil', 'PerfilController', ['except' => $excepts]);
+        Route::resource('permissao', 'PermissaoController', ['except' => $excepts]);
     });
 
 });
