@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class VwValidacaoCertificado extends Model
 {
-//    TODO - testar se consigo passar um array de conexções, para manipular na service.
-//    protected $connection = 'ESAF';
 
     /**
      * @var string
@@ -18,4 +16,20 @@ class VwValidacaoCertificado extends Model
      * @var string
      */
     protected $primaryKey = 'codigo_certificado';
+
+    /**
+     * @var array
+     */
+    protected $appends = [
+        'tx_origem'
+    ];
+
+    /**
+     * @return string|null
+     */
+    public function getTxOrigemAttribute()
+    {
+        return $this->connection;
+    }
+
 }
