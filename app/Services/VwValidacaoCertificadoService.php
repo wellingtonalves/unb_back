@@ -38,7 +38,8 @@ class VwValidacaoCertificadoService extends AbstractService
                 'secretaria',
                 'esaf',
                 'sof',
-                'spoc'
+                'spoc',
+                'suap'
             ];
 
             foreach ($possibleConnections as $newConnection) {

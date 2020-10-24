@@ -87,6 +87,19 @@ return [
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
+        'suap' => [
+            'driver' => 'pgsql',
+            'host' => env('DB_HOST_SUAP', '127.0.0.1'),
+            'port' => env('DB_PORT_SUAP', '5432'),
+            'database' => env('DB_DATABASE_SUAP', 'forge'),
+            'username' => env('DB_USERNAME_SUAP', 'forge'),
+            'password' => env('DB_PASSWORD_SUAP', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+        ],
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
