@@ -37,7 +37,8 @@ class VwValidacaoCertificadoService extends AbstractService
             $possibleConnections = [
                 'secretaria',
                 'esaf',
-                'sof'
+                'sof',
+                'spoc'
             ];
 
             foreach ($possibleConnections as $newConnection) {

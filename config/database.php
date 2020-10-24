@@ -74,6 +74,19 @@ return [
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
+        'spoc' => [
+            'driver' => 'pgsql',
+            'host' => env('DB_HOST_SPOC', '127.0.0.1'),
+            'port' => env('DB_PORT_SPOC', '5432'),
+            'database' => env('DB_DATABASE_SPOC', 'forge'),
+            'username' => env('DB_USERNAME_SPOC', 'forge'),
+            'password' => env('DB_PASSWORD_SPOC', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+        ],
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
