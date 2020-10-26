@@ -26,6 +26,7 @@ class AuthServiceProvider extends ServiceProvider
          'App\Models\Domain\Municipio' => 'App\Policies\Domain\MunicipioPolicy',
          'App\Models\Domain\UF' => 'App\Policies\Domain\UfPolicy',
          'App\Models\View\VwValidacaoCertificado' => 'App\Policies\VwValidacaoCertificadoPolicy',
+         'App\Models\View\VwCursosRealizados' => 'App\Policies\VwCursosRealizadosPolicy',
     ];
 
     /**

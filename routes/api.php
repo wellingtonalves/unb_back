@@ -37,8 +37,9 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly, $o
             Route::resource('uf', 'UfController', $optionsReadOnly);
         });
 
-        Route::group(['prefix' => 'vw'], function () use ($optionsReadView) {
+        Route::group(['prefix' => 'vw'], function () use ($optionsReadView, $optionsReadOnly) {
             Route::resource('valida-certificado', 'VwValidacaoCertificadoController', $optionsReadView);
+            Route::resource('cursos-realizados', 'VwCursosRealizadosController', $optionsReadOnly);
         });
 
         Route::resource('curso', 'CursoController', ['except' => $excepts]);
