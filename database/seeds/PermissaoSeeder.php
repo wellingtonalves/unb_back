@@ -43,6 +43,11 @@ class PermissaoSeeder extends Seeder
             ['tx_nome_permissao' => 'PERFIL_INCLUIR'],
             ['tx_nome_permissao' => 'PERFIL_EDITAR'],
             ['tx_nome_permissao' => 'PERFIL_EXCLUIR'],
+            ['tx_nome_permissao' => 'PERMISSAO_LISTAR'],
+            ['tx_nome_permissao' => 'PERMISSAO_DETALHAR'],
+            ['tx_nome_permissao' => 'PERMISSAO_INCLUIR'],
+            ['tx_nome_permissao' => 'PERMISSAO_EDITAR'],
+            ['tx_nome_permissao' => 'PERMISSAO_EXCLUIR'],
             ['tx_nome_permissao' => 'SITUACAO_USUARIO_LISTAR'],
             ['tx_nome_permissao' => 'SITUACAO_USUARIO_DETALHAR'],
             ['tx_nome_permissao' => 'SITUACAO_USUARIO_INCLUIR'],
@@ -53,6 +58,12 @@ class PermissaoSeeder extends Seeder
             ['tx_nome_permissao' => 'TAREFA_AGENDADA_INCLUIR'],
             ['tx_nome_permissao' => 'TAREFA_AGENDADA_EDITAR'],
             ['tx_nome_permissao' => 'TAREFA_AGENDADA_EXCLUIR'],
+            ['tx_nome_permissao' => 'PAIS_LISTAR'],
+            ['tx_nome_permissao' => 'PAIS_DETALHAR'],
+            ['tx_nome_permissao' => 'MUNICIPIO_LISTAR'],
+            ['tx_nome_permissao' => 'MUNICIPIO_DETALHAR'],
+            ['tx_nome_permissao' => 'UF_LISTAR'],
+            ['tx_nome_permissao' => 'UF_DETALHAR'],
         ];
 
         foreach ($permissao as $value) {

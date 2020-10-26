@@ -3,18 +3,16 @@
 namespace App\Repositories;
 
 
-use App\Models\Perfil;
+use App\Models\Permissao;
 
-class PerfilRepository extends AbstractRepository
+class PermissaoRepository extends AbstractRepository
 {
     /**
      * Relationships
      *
      * @return string
      */
-    public $relationships = [
-        'permissao'
-    ];
+    public $relationships = [];
 
     /**
      * FieldSearchable
@@ -22,8 +20,8 @@ class PerfilRepository extends AbstractRepository
      * @return string
      */
     protected $fieldSearchable = [
-        'id_perfil',
-        'tx_nome_perfil' => 'like',
+        'id_permissao',
+        'tx_nome_permissao' => 'like',
     ];
 
     /**
@@ -33,7 +31,7 @@ class PerfilRepository extends AbstractRepository
      */
     public function model()
     {
-        return Perfil::class;
+        return Permissao::class;
     }
 
 }

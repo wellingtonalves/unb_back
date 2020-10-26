@@ -48,4 +48,45 @@ class UsuarioObserver
         }
     }
 
+    /**
+     * @param Usuario $usuario
+     * @return Usuario|Exception
+     */
+    public function updated(Usuario $usuario)
+    {
+        try {
+
+            $personAtributtes = $this->request->pessoa;
+            $person = Pessoa::find($usuario->id_usuario);
+            $person->update($personAtributtes);
+
+            return $usuario;
+
+        } catch (Exception $exception) {
+            //TODO - fazer tratamento de erros (usando o ResponseServiceProvider)
+            Log::info($exception->getMessage());
+            return new Exception($exception->getMessage());
+        }
+    }
+
+    /**
+     * @param Usuario $usuario
+     * @return Usuario|Exception
+     */
+    public function deleting(Usuario $usuario)
+    {
+        try {
+
+            $person = Pessoa::find($usuario->id_usuario);
+            $person->delete();
+
+            return $usuario;
+
+        } catch (Exception $exception) {
+            //TODO - fazer tratamento de erros (usando o ResponseServiceProvider)
+            Log::info($exception->getMessage());
+            return new Exception($exception->getMessage());
+        }
+    }
+
 }

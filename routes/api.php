@@ -33,9 +33,16 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
         Route::resource('ava', 'AvaController', ['except' => $excepts]);
         Route::resource('orgao', 'OrgaoController', ['except' => $excepts]);
         Route::resource('usuario', 'UsuarioController', ['except' => $excepts]);
-        Route::resource('situacao-usuario', 'SituacaoUsuarioController', $optionsReadOnly);
         Route::resource('perfil', 'PerfilController', ['except' => $excepts]);
         Route::resource('tarefa-agendada', 'TarefaAgendadaController', ['except' => $excepts]);
+        Route::resource('permissao', 'PermissaoController', ['except' => $excepts]);
+
+        Route::namespace('Domain')->group(function () use ($optionsReadOnly) {
+            Route::resource('situacao-usuario', 'SituacaoUsuarioController', $optionsReadOnly);
+            Route::resource('pais', 'PaisController', $optionsReadOnly);
+            Route::resource('municipio', 'MunicipioController', $optionsReadOnly);
+            Route::resource('uf', 'UfController', $optionsReadOnly);
+        });
     });
 
 });

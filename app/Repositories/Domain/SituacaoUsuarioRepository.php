@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Domain;
 
-
-use App\Models\SituacaoUsuario;
+use App\Repositories\AbstractRepository;
+use App\Models\Domain\SituacaoUsuario;
 
 class SituacaoUsuarioRepository extends AbstractRepository
 {
