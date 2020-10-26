@@ -36,5 +36,4 @@ class TarefaAgendadaRepository extends AbstractRepository
     {
         return TarefaAgendada::class;
     }
-
 }

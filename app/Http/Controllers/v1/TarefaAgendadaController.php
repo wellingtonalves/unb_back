@@ -35,9 +35,7 @@ class TarefaAgendadaController extends AbstractController
      */
     public function store(TarefaAgendadaRequest $request)
     {
-        $this->authorize('store', $this->model);
-        $data = $this->service->create($request);
-        return Response::custom($data->statusOperacao, $data, Response::HTTP_CREATED);
+        return parent::save($request);
     }
 
     /**
