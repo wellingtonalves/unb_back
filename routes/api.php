@@ -15,10 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 $excepts = ['create', 'edit'];
 $optionsReadOnly = ['only' => ['index', 'show']];
-$optionsReadView = ['only' => ['show']];
 
-
-Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly, $optionsReadView) {
+Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
 
     Route::group(['prefix' => 'auth'], function () {
         Route::namespace('Auth')->group(function () {
@@ -28,7 +26,7 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly, $o
         });
     });
 
-    Route::namespace('v1')->middleware('auth:api')->group(function () use ($excepts, $optionsReadOnly, $optionsReadView) {
+    Route::namespace('v1')->middleware('auth:api')->group(function () use ($excepts, $optionsReadOnly) {
 
         Route::namespace('Domain')->group(function () use ($optionsReadOnly) {
             Route::resource('situacao-usuario', 'SituacaoUsuarioController', $optionsReadOnly);
@@ -37,9 +35,9 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly, $o
             Route::resource('uf', 'UfController', $optionsReadOnly);
         });
 
-        Route::group(['prefix' => 'vw'], function () use ($optionsReadView, $optionsReadOnly) {
-            Route::resource('valida-certificado', 'VwValidacaoCertificadoController', $optionsReadView);
-            Route::resource('cursos-realizados', 'VwCursosRealizadosController', $optionsReadOnly);
+        Route::group(['prefix' => 'vw'], function () {
+            Route::resource('valida-certificado', 'VwValidacaoCertificadoController', ['only' => ['show']]);
+            Route::resource('cursos-realizados', 'VwCursosRealizadosController', ['only' => ['index']]);
         });
 
         Route::resource('curso', 'CursoController', ['except' => $excepts]);
