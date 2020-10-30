@@ -3,6 +3,7 @@
 namespace App\Criteria;
 
 use App\Exceptions\VwCursosRealizadosException;
+use App\Exceptions\VwEmissaoCertificadoException;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\CriteriaInterface;
@@ -10,10 +11,10 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 use Prettus\Repository\Criteria\RequestCriteria;
 
 /**
- * Class VwCursosRealizadosCriteria
+ * Class VwEmissaoCertificadoCriteria
  * @package App\Criteria
  */
-class VwCursosRealizadosCriteria extends RequestCriteria implements CriteriaInterface
+class VwEmissaoCertificadoCriteria extends RequestCriteria implements CriteriaInterface
 {
 
     /**
@@ -26,10 +27,10 @@ class VwCursosRealizadosCriteria extends RequestCriteria implements CriteriaInte
         $searchFields = $this->request->get('search');
         $searchFields = $this->parserSearchData($searchFields);
 
-        if (empty($searchFields['nr_cpf']) && empty($searchFields['tx_email'])) {
-            new VwCursosRealizadosException();
+        if (empty($searchFields['id_certificado']) || empty($searchFields['tx_origem'])) {
+            new VwEmissaoCertificadoException();
         }
 
-        return $model;
+        return $model->getModel()->setConnection($searchFields['tx_origem']);
     }
 }

@@ -30,15 +30,15 @@ abstract class AbstractController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param $uuid
+     * @param $id
      *
      * @return JsonResponse
      * @throws Exception
      */
-    public function show($uuid)
+    public function show($id)
     {
         $this->authorize('show', $this->model);
-        return $this->service->find($uuid);
+        return $this->service->find($id);
     }
 
     /**

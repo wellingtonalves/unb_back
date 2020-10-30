@@ -59,6 +59,7 @@ class PermissaoSeeder extends Seeder
 
             ['tx_nome_permissao' => 'VW_VALIDACAO_CERTIFICADO_DETALHAR'],
             ['tx_nome_permissao' => 'VW_CURSOS_REALIZADOS_LISTAR'],
+            ['tx_nome_permissao' => 'VW_EMISSAO_CERTIFICADO_LISTAR'],
         ];
 
         foreach ($permissao as $value) {

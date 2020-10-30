@@ -38,6 +38,7 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
         Route::group(['prefix' => 'vw'], function () {
             Route::resource('valida-certificado', 'VwValidacaoCertificadoController', ['only' => ['show']]);
             Route::resource('cursos-realizados', 'VwCursosRealizadosController', ['only' => ['index']]);
+            Route::resource('emissao-certificado', 'VwEmissaoCertificadoController', ['only' => ['index']]);
         });
 
         Route::resource('curso', 'CursoController', ['except' => $excepts]);
