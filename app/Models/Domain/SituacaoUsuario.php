@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Domain;
 
+use App\Models\AbstractModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class SituacaoUsuario extends AbstractModel
 {

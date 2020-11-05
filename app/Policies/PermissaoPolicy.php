@@ -4,7 +4,7 @@ namespace App\Policies;
 
 use App\Models\Usuario;
 
-class SituacaoUsuarioPolicy extends AbstractPolicy
+class PermissaoPolicy extends AbstractPolicy
 {
 
     /**
@@ -13,7 +13,7 @@ class SituacaoUsuarioPolicy extends AbstractPolicy
      */
     public function index(Usuario $usuario)
     {
-        return self::check('SITUACAO_USUARIO_LISTAR', $usuario);
+        return self::check('PERMISSAO_LISTAR', $usuario);
     }
 
     /**
@@ -22,7 +22,7 @@ class SituacaoUsuarioPolicy extends AbstractPolicy
      */
     public function show(Usuario $usuario)
     {
-        return self::check('SITUACAO_USUARIO_DETALHAR', $usuario);
+        return self::check('PERMISSAO_DETALHAR', $usuario);
     }
 
     /**
@@ -31,7 +31,7 @@ class SituacaoUsuarioPolicy extends AbstractPolicy
      */
     public function store(Usuario $usuario)
     {
-        return self::check('SITUACAO_USUARIO_INCLUIR', $usuario);
+        return self::check('PERMISSAO_INCLUIR', $usuario);
     }
 
     /**
@@ -40,7 +40,7 @@ class SituacaoUsuarioPolicy extends AbstractPolicy
      */
     public function update(Usuario $usuario)
     {
-        return self::check('SITUACAO_USUARIO_EDITAR', $usuario);
+        return self::check('PERMISSAO_EDITAR', $usuario);
     }
 
     /**
@@ -49,6 +49,6 @@ class SituacaoUsuarioPolicy extends AbstractPolicy
      */
     public function destroy(Usuario $usuario)
     {
-        return self::check('SITUACAO_USUARIO_EXCLUIR', $usuario);
+        return self::check('PERMISSAO_EXCLUIR', $usuario);
     }
 }
