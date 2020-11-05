@@ -20,6 +20,7 @@ class AuthServiceProvider extends ServiceProvider
          'App\Models\Ava' => 'App\Policies\AvaPolicy',
          'App\Models\Orgao' => 'App\Policies\OrgaoPolicy',
          'App\Models\Perfil' => 'App\Policies\PerfilPolicy',
+         'App\Models\TarefaAgendada' => 'App\Policies\TarefaAgendadaPolicy',
          'App\Models\Permissao' => 'App\Policies\PermissaoPolicy',
          'App\Models\Domain\SituacaoUsuario' => 'App\Policies\Domain\SituacaoUsuarioPolicy',
          'App\Models\Domain\Pais' => 'App\Policies\Domain\PaisPolicy',
