@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Ava extends AbstractModel
 {
+    use SoftDeletes;
+
     protected $table = 'tb_ava';
     protected $primaryKey = 'id_ava';
 
