@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\v1;
+namespace App\Http\Controllers\v1\Domain;
 
 use App\Http\Controllers\AbstractController;
 use App\Http\Requests\ModeloCertificadoRequest;
-use App\Models\ModeloCertificado;
-use App\Services\ModeloCertificadoService;
+use App\Models\Domain\ModeloCertificado;
+use App\Services\Domain\ModeloCertificadoService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;

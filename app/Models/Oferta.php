@@ -46,6 +46,8 @@ class Oferta extends AbstractModel
         'tp_origem_oferta',
     ];
 
+    protected $appends = ['total_ofertas'];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -68,5 +70,21 @@ class Oferta extends AbstractModel
     public function getTpSituacaoOfertaAttribute()
     {
         return trim($this->attributes['tp_situacao_oferta']);
+    }
+
+    /**
+     * @return int
+     */
+    public function getTotalOfertasAttribute()
+    {
+        return $this->inscricao()->count();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function inscricao()
+    {
+        return $this->hasMany(Inscricao::class, 'id_oferta');
     }
 }

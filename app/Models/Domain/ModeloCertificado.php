@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Domain;
 
-use App\Models\Domain\TipoOferta;
+use App\Models\AbstractModel;
 
 class ModeloCertificado extends AbstractModel
 {

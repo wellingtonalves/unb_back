@@ -69,6 +69,20 @@ class PermissaoSeeder extends Seeder
             ['tx_nome_permissao' => 'MUNICIPIO_DETALHAR'],
             ['tx_nome_permissao' => 'UF_LISTAR'],
             ['tx_nome_permissao' => 'UF_DETALHAR'],
+            ['tx_nome_permissao' => 'OFERTA_LISTAR'],
+            ['tx_nome_permissao' => 'OFERTA_DETALHAR'],
+            ['tx_nome_permissao' => 'OFERTA_INCLUIR'],
+            ['tx_nome_permissao' => 'OFERTA_EDITAR'],
+            ['tx_nome_permissao' => 'OFERTA_EXCLUIR'],
+            ['tx_nome_permissao' => 'TIPO_OFETA_LISTAR'],
+            ['tx_nome_permissao' => 'TIPO_OFETA_DETALHAR'],
+            ['tx_nome_permissao' => 'MODELO_CERTIFICADO_LISTAR'],
+            ['tx_nome_permissao' => 'MODELO_CERTIFICADO_DETALHAR'],
+            ['tx_nome_permissao' => 'PARCEIRO_LISTAR'],
+            ['tx_nome_permissao' => 'PARCEIRO_DETALHAR'],
+            ['tx_nome_permissao' => 'PARCEIRO_INCLUIR'],
+            ['tx_nome_permissao' => 'PARCEIRO_EDITAR'],
+            ['tx_nome_permissao' => 'PARCEIRO_EXCLUIR'],
         ];
 
         foreach ($permissao as $value) {

@@ -87,6 +87,18 @@ return [
     'unique'               => 'O campo :attribute já está sendo utilizado.',
     'uploaded'             => 'Ocorreu uma falha no upload do campo :attribute.',
     'url'                  => 'O campo :attribute tem um formato inválido.',
+    'gt' => [
+        'numeric' => 'The :attribute precisa ser maior que :value.',
+        'file' => 'The :attribute precisa ser maior que :value kilobytes.',
+        'string' => 'The :attribute precisa ser maior que :value caracteres.',
+        'array' => 'The :attribute precisar ter mais de :value itens.',
+    ],
+    'gte' => [
+        'numeric' => 'The :attribute precisa ser maior ou igual :value.',
+        'file' => 'The :attribute precisa ser maior ou igual :value kilobytes.',
+        'string' => 'The :attribute precisa ser maior ou igual :value caracteres.',
+        'array' => 'The :attribute precisa ter :value itens ou mais.',
+    ],
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -113,5 +125,15 @@ return [
     |
     */
     'attributes' => [],
-
+    'values' => [
+        'dt_inicio_oferta' => [
+            'yesterday' => 'ontem'
+        ],
+        'dt_inicio_inscricao' => [
+            'yesterday' => 'ontem'
+        ],
+        'dt_inicio_selecao' => [
+            'yesterday' => 'ontem'
+        ],
+    ]
 ];

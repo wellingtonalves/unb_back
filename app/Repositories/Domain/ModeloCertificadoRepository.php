@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Domain;
 
-use App\Models\ModeloCertificado;
+use App\Models\Domain\ModeloCertificado;
+use App\Repositories\AbstractRepository;
 
 class ModeloCertificadoRepository extends AbstractRepository
 {

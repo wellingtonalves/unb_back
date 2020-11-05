@@ -18,7 +18,9 @@ class ParceiroRepository extends AbstractRepository
      *
      * @return string
      */
-    protected $fieldSearchable = [];
+    protected $fieldSearchable = [
+        'id_tipo_parceiros'
+    ];
 
     /**
      * Specify Model class name

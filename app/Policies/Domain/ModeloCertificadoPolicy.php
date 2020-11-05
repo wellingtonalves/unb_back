@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Domain;
 
 use App\Models\Usuario;
+use App\Policies\AbstractPolicy;
 
 class ModeloCertificadoPolicy extends AbstractPolicy
 {

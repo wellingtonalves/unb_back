@@ -36,8 +36,7 @@ class OfertaController extends AbstractController
     public function store(OfertaRequest $request)
     {
         $this->authorize('store', $this->model);
-        $data = $this->service->create($request);
-        return Response::custom('created', $data, Response::HTTP_CREATED);
+        return parent::save($request);
     }
 
     /**
@@ -49,12 +48,6 @@ class OfertaController extends AbstractController
     public function update(OfertaRequest $request, $id)
     {
         $this->authorize('update', $this->model);
-        $updated = $this->service->update($request, $id);
-        if ($updated) {
-            return Response::custom('updated', $updated, Response::HTTP_OK);
-        } else {
-            return Response::custom('error_operation', $updated, Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
-
+        return parent::updateAs($request, $id);
     }
 }
