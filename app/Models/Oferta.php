@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Domain\TipoOferta;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Oferta extends AbstractModel
@@ -53,7 +55,7 @@ class Oferta extends AbstractModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function tipoOferta()
+    public function tipoOferta(): BelongsTo
     {
         return $this->belongsTo(TipoOferta::class, 'id_tipo_oferta');
     }
@@ -85,7 +87,7 @@ class Oferta extends AbstractModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function inscricao()
+    public function inscricao(): HasMany
     {
         return $this->hasMany(Inscricao::class, 'id_oferta');
     }
