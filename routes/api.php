@@ -38,6 +38,7 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
         Route::resource('permissao', 'PermissaoController', ['except' => $excepts]);
         Route::resource('ofertas', 'OfertaController', ['except' => $excepts]);
         Route::resource('parceiros', 'ParceiroController', ['except' => $excepts]);
+        Route::resource('programas', 'ProgramaController', ['except' => $excepts]);
 
         Route::namespace('Domain')->group(function () use ($optionsReadOnly) {
             Route::resource('situacao-usuario', 'SituacaoUsuarioController', $optionsReadOnly);

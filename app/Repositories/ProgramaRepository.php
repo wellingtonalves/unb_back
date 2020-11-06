@@ -2,18 +2,16 @@
 
 namespace App\Repositories;
 
-use App\Models\Oferta;
+use App\Models\Programa;
 
-class OfertaRepository extends AbstractRepository
+class ProgramaRepository extends AbstractRepository
 {
     /**
      * Relationships
      *
      * @return string
      */
-    public $relationships = [
-        'tipoOferta'
-    ];
+    public $relationships = ['programaCurso'];
 
     /**
      * FieldSearchable
@@ -21,10 +19,8 @@ class OfertaRepository extends AbstractRepository
      * @return string
      */
     protected $fieldSearchable = [
-        'tx_nome_oferta' => 'ilike',
-        'id_tipo_oferta',
-        'id_ava',
-        'tp_situacao_oferta' => 'LIKE',
+        'tx_nome_programa' => 'ilike',
+        'tp_situacao_programa',
     ];
 
     /**
@@ -34,7 +30,6 @@ class OfertaRepository extends AbstractRepository
      */
     public function model()
     {
-        return Oferta::class;
+        return Programa::class;
     }
-
 }
