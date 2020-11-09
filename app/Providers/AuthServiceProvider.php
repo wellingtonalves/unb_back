@@ -30,6 +30,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\Domain\TipoOferta' => 'App\Policies\Domain\TipoOfertaPolicy',
         'App\Models\Domain\ModeloCertificado' => 'App\Policies\Domain\ModeloCertificadoPolicy',
         'App\Models\Parceiro' => 'App\Policies\ParceiroPolicy',
+        'App\Models\Programa' => 'App\Policies\ProgramaPolicy',
     ];
 
     /**

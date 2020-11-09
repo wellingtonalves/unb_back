@@ -135,5 +135,8 @@ return [
         'dt_inicio_selecao' => [
             'yesterday' => 'ontem'
         ],
+        'dt_inicio_validade' => [
+            'yesterday' => 'ontem'
+        ],
     ]
 ];

@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Oferta extends AbstractModel
 {
-    use SoftDeletes;
-
     protected $table = 'tb_oferta';
     protected $primaryKey = 'id_oferta';
 
