@@ -8,7 +8,6 @@ use App\Models\TarefaAgendada;
 use App\Services\TarefaAgendadaService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
 
 class TarefaAgendadaController extends AbstractController
 {
