@@ -3,48 +3,51 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\AbstractController;
-use App\Http\Requests\TarefaAgendadaRequest;
-use App\Models\TarefaAgendada;
-use App\Services\TarefaAgendadaService;
+use App\Http\Requests\OfertaRequest;
+use App\Models\Oferta;
+use App\Services\OfertaService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
-class TarefaAgendadaController extends AbstractController
+class OfertaController extends AbstractController
 {
     /**
-     * @var TarefaAgendadaService
+     * @var OfertaService
      */
     protected $service;
 
     /**
-     * @var TarefaAgendada
+     * @var Oferta
      */
     protected $model;
 
-    public function __construct(TarefaAgendadaService $service, TarefaAgendada $model)
+    public function __construct(OfertaService $service, Oferta $model)
     {
         $this->service = $service;
         $this->model = $model;
     }
 
     /**
-     * @param TarefaAgendadaRequest $request
+     * @param OfertaRequest $request
      * @return JsonResponse
      * @throws AuthorizationException
      */
-    public function store(TarefaAgendadaRequest $request)
+    public function store(OfertaRequest $request)
     {
+        $this->authorize('store', $this->model);
         return parent::save($request);
     }
 
     /**
-     * @param TarefaAgendadaRequest $request
+     * @param OfertaRequest $request
      * @param int $id
      * @return JsonResponse
      * @throws AuthorizationException
      */
-    public function update(TarefaAgendadaRequest $request, $id)
+    public function update(OfertaRequest $request, $id)
     {
+        $this->authorize('update', $this->model);
         return parent::updateAs($request, $id);
     }
 }

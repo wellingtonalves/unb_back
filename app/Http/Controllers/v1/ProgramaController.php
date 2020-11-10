@@ -3,47 +3,52 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\AbstractController;
-use App\Http\Requests\TarefaAgendadaRequest;
-use App\Models\TarefaAgendada;
-use App\Services\TarefaAgendadaService;
+use App\Http\Requests\ProgramaRequest;
+use App\Models\Programa;
+use App\Services\ProgramaService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 
-class TarefaAgendadaController extends AbstractController
+class ProgramaController extends AbstractController
 {
     /**
-     * @var TarefaAgendadaService
+     * @var ProgramaService
      */
     protected $service;
 
     /**
-     * @var TarefaAgendada
+     * @var Programa
      */
     protected $model;
 
-    public function __construct(TarefaAgendadaService $service, TarefaAgendada $model)
+    /**
+     * ProgramaController constructor.
+     * @param ProgramaService $service
+     * @param Programa $model
+     */
+    public function __construct(ProgramaService $service, Programa $model)
     {
         $this->service = $service;
         $this->model = $model;
     }
 
     /**
-     * @param TarefaAgendadaRequest $request
+     * @param ProgramaRequest $request
      * @return JsonResponse
      * @throws AuthorizationException
      */
-    public function store(TarefaAgendadaRequest $request)
+    public function store(ProgramaRequest $request)
     {
         return parent::save($request);
     }
 
     /**
-     * @param TarefaAgendadaRequest $request
-     * @param int $id
+     * @param ProgramaRequest $request
+     * @param $id
      * @return JsonResponse
      * @throws AuthorizationException
      */
-    public function update(TarefaAgendadaRequest $request, $id)
+    public function update(ProgramaRequest $request, $id)
     {
         return parent::updateAs($request, $id);
     }

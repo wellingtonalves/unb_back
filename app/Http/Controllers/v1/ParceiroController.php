@@ -3,48 +3,51 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\AbstractController;
-use App\Http\Requests\TarefaAgendadaRequest;
-use App\Models\TarefaAgendada;
-use App\Services\TarefaAgendadaService;
+use App\Http\Requests\ParceiroRequest;
+use App\Models\Parceiro;
+use App\Services\ParceiroService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
-class TarefaAgendadaController extends AbstractController
+class ParceiroController extends AbstractController
 {
     /**
-     * @var TarefaAgendadaService
+     * @var ParceiroService
      */
     protected $service;
 
     /**
-     * @var TarefaAgendada
+     * @var Parceiro
      */
     protected $model;
 
-    public function __construct(TarefaAgendadaService $service, TarefaAgendada $model)
+    public function __construct(ParceiroService $service, Parceiro $model)
     {
         $this->service = $service;
         $this->model = $model;
     }
 
     /**
-     * @param TarefaAgendadaRequest $request
+     * @param ParceiroRequest $request
      * @return JsonResponse
      * @throws AuthorizationException
      */
-    public function store(TarefaAgendadaRequest $request)
+    public function store(ParceiroRequest $request)
     {
+        $this->authorize('store', $this->model);
         return parent::save($request);
     }
 
     /**
-     * @param TarefaAgendadaRequest $request
+     * @param ParceiroRequest $request
      * @param int $id
      * @return JsonResponse
      * @throws AuthorizationException
      */
-    public function update(TarefaAgendadaRequest $request, $id)
+    public function update(ParceiroRequest $request, $id)
     {
+        $this->authorize('update', $this->model);
         return parent::updateAs($request, $id);
     }
 }
