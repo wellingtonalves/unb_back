@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TarefaAgendada extends AbstractModel
 {
-    use SoftDeletes;
 
     protected $table = 'tb_tarefa_agendada';
     protected $primaryKey = 'id_tarefa_agendada';
