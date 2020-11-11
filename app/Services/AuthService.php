@@ -2,11 +2,8 @@
 
 namespace App\Services;
 
-use App\Exceptions\NaoAutorizadoException;
-use App\Helpers\Constants;
 use App\Repositories\PessoaRepository;
 use App\Repositories\UsuarioRepository;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
@@ -48,11 +45,9 @@ class AuthService
     /**
      * @param $request
      * @return mixed
-     * @throws NaoAutorizadoException
      */
     public function login($request)
     {
-        $this->verificarPerfil($request);
 
         try {
 
@@ -80,24 +75,9 @@ class AuthService
     }
 
     /**
-     * Por enquanto, o perfil aluno não pode acessar a plataforma.
-     *
      * @param $request
-     * @throws NaoAutorizadoException
+     * @return mixed
      */
-    public function verificarPerfil($request)
-    {
-        $user = $this->repository->where('tx_login_usuario', '=', $request->username)->first();
-
-        if (!$user) {
-            throw new NaoAutorizadoException();
-        }
-
-        if ($user->id_perfil == Constants::PERFIS['ALUNO']) {
-            throw new NaoAutorizadoException();
-        }
-    }
-
     public function logout($request)
     {
         try {

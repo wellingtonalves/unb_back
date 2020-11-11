@@ -13,9 +13,9 @@ class PermissaoSeeder extends Seeder
     public function run()
     {
         $permissao = [
-            ['tx_nome_permissao' => 'CURSO_LISTAR'],
-            ['tx_nome_permissao' => 'CURSO_DETALHAR'],
-            ['tx_nome_permissao' => 'CURSO_INCLUIR'],
+            ['tx_nome_permissao' => 'CURSO_LISTAR'], // id 1
+            ['tx_nome_permissao' => 'CURSO_DETALHAR'], // id 2
+            ['tx_nome_permissao' => 'CURSO_INCLUIR'], // id 3
             ['tx_nome_permissao' => 'CURSO_EDITAR'],
             ['tx_nome_permissao' => 'CURSO_EXCLUIR'],
             ['tx_nome_permissao' => 'TEMATICA_CURSO_LISTAR'],
@@ -88,6 +88,7 @@ class PermissaoSeeder extends Seeder
             ['tx_nome_permissao' => 'PROGRAMA_INCLUIR'],
             ['tx_nome_permissao' => 'PROGRAMA_EDITAR'],
             ['tx_nome_permissao' => 'PROGRAMA_EXCLUIR'],
+            ['tx_nome_permissao' => 'MEUS_DADOS_LISTAR'], // id 75
         ];
 
         foreach ($permissao as $value) {
