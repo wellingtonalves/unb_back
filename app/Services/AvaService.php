@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Repositories\AvaRepository;
 use App\Services\AbstractService;
 use Exception;
+use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 class AvaService extends AbstractService
@@ -44,10 +45,15 @@ class AvaService extends AbstractService
      */
     public function find($id)
     {
-        $ava = parent::find($id);
-        $ava->tp_ava = trim($ava->tp_ava);
-        
-        return $ava;
+        try {
+            $data = $this->repository->with($this->repository->relationships)->find($id);
+            $data->tp_ava = trim($data->tp_ava);
+
+            return Response::custom('success_operation', $data);
+        } catch (Exception $exception) {
+            Log::info($exception->getMessage());
+            return Response::custom('error_operation', $exception);
+        }
     }
 
     /**
