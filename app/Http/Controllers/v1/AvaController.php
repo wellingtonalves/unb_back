@@ -48,6 +48,13 @@ class AvaController extends AbstractController
      */
     public function update(AvaRequest $request, $id)
     {
-        return parent::updateAs($request, $id);
+        $this->authorize('update', $this->model);
+        $updated = $this->service->update($request, $id);
+        if ($updated) {
+            return Response::custom($updated, $updated, Response::HTTP_OK);
+        } else {
+            return Response::custom('error_operation', $updated, Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+        
     }
 }

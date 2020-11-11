@@ -27,12 +27,13 @@ class MoodleRepository
      * @param string $url
      * @param string $token
      */
-    public function setAva($url, $token)
+    public function setAvaMoodle($url, $token)
     {
         $this->url = $url;
         $this->token = $token;
 
-        $ava = $this->avaRepository->where('tx_url', '=', $url)->where('tx_token', '=', $token)->get();
+        $ava = $this->avaRepository->where('tx_url', '=', $url)->where('tx_token', '=', $token)
+            ->where('tp_ava', '=', 'MOODLE')->get();
         $this->idAva = $ava->isNotEmpty() ? $ava->first()->getKey() : null;
     }
 
