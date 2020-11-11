@@ -3,11 +3,13 @@
 namespace App\Services;
 
 use App\Criteria\VwEmissaoCertificadoCriteria;
+use App\Exceptions\VwEmissaoCertificadoException;
 use App\Repositories\VwEmissaoCertificadoRepository;
+use Exception;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
-class VwEmissaoCertificadoService extends AbstractService
+class VwEmissaoCertificadoService
 {
 
     /**
@@ -24,16 +26,23 @@ class VwEmissaoCertificadoService extends AbstractService
         $this->repository = $repository;
     }
 
-    public function all()
+    /**
+     * @param $idCertificado
+     * @param $txOrigem
+     * @return mixed
+     */
+    public function find($idCertificado, $txOrigem)
     {
+
+        if (!$idCertificado || !$txOrigem) {
+            new VwEmissaoCertificadoException();
+        }
+
         try {
 
-            $this->repository->pushCriteria(app(VwEmissaoCertificadoCriteria::class));
-            $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-            $data = $this->repository->with($this->repository->relationships);
-            $perPage = request()->has('per_page') ? request()->per_page : null;
-            $data = request()->pagination == 'false' ? $data->all() : $data->paginate($perPage);
+            $data = $this->repository->makeModel()->setConnection($txOrigem)->find($idCertificado);
             return Response::custom('success_operation', $data);
+
         } catch (Exception $exception) {
             Log::info($exception->getMessage());
             return Response::custom('error_operation', $exception);

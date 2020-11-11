@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\v1;
 
-use App\Http\Controllers\AbstractController;
+use App\Http\Controllers\Controller;
 use App\Models\View\VwEmissaoCertificado;
 use App\Services\VwEmissaoCertificadoService;
-use Illuminate\Http\JsonResponse;
 
-class VwEmissaoCertificadoController extends AbstractController
+class VwEmissaoCertificadoController extends Controller
 {
     /**
      * @var VwEmissaoCertificadoService
@@ -29,6 +28,16 @@ class VwEmissaoCertificadoController extends AbstractController
     {
         $this->service = $service;
         $this->model = $model;
+    }
+
+    /**
+     * @param $idCertificado
+     * @param $txOrigem
+     * @return mixed
+     */
+    public function find($idCertificado, $txOrigem)
+    {
+        return $this->service->find($idCertificado, $txOrigem);
     }
 
 }
