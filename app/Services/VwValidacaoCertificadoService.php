@@ -35,7 +35,7 @@ class VwValidacaoCertificadoService extends AbstractService
         try {
             $data = null;
             $possibleConnections = [
-                'secretaria',
+                'evg',
                 'esaf',
                 'sof',
                 'spoc',
