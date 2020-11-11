@@ -28,17 +28,19 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
 
     Route::namespace('v1')->middleware('auth:api')->group(function () use ($excepts, $optionsReadOnly) {
 
+        Route::group(['prefix' => 'vw'], function () {
+            Route::resource('valida-certificado', 'VwValidacaoCertificadoController', ['only' => ['show']]);
+            Route::resource('cursos-realizados', 'VwCursosRealizadosController', ['only' => ['index']]);
+            Route::get('emissao-certificado/{idCertificado}/{txOrigem}', 'VwEmissaoCertificadoController@find');
+        });
+
         Route::namespace('Domain')->group(function () use ($optionsReadOnly) {
             Route::resource('situacao-usuario', 'SituacaoUsuarioController', $optionsReadOnly);
             Route::resource('pais', 'PaisController', $optionsReadOnly);
             Route::resource('municipio', 'MunicipioController', $optionsReadOnly);
             Route::resource('uf', 'UfController', $optionsReadOnly);
-        });
-
-        Route::group(['prefix' => 'vw'], function () {
-            Route::resource('valida-certificado', 'VwValidacaoCertificadoController', ['only' => ['show']]);
-            Route::resource('cursos-realizados', 'VwCursosRealizadosController', ['only' => ['index']]);
-            Route::get('emissao-certificado/{idCertificado}/{txOrigem}', 'VwEmissaoCertificadoController@find');
+            Route::resource('tipo-oferta', 'TipoOfertaController', $optionsReadOnly);
+            Route::resource('modelo-certificado', 'ModeloCertificadoController', $optionsReadOnly);
         });
 
         Route::resource('curso', 'CursoController', ['except' => $excepts]);
@@ -52,15 +54,6 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
         Route::resource('ofertas', 'OfertaController', ['except' => $excepts]);
         Route::resource('parceiros', 'ParceiroController', ['except' => $excepts]);
         Route::resource('programas', 'ProgramaController', ['except' => $excepts]);
-
-        Route::namespace('Domain')->group(function () use ($optionsReadOnly) {
-            Route::resource('situacao-usuario', 'SituacaoUsuarioController', $optionsReadOnly);
-            Route::resource('pais', 'PaisController', $optionsReadOnly);
-            Route::resource('municipio', 'MunicipioController', $optionsReadOnly);
-            Route::resource('uf', 'UfController', $optionsReadOnly);
-            Route::resource('tipo-oferta', 'TipoOfertaController', $optionsReadOnly);
-            Route::resource('modelo-certificado', 'ModeloCertificadoController', $optionsReadOnly);
-        });
     });
 
 });
