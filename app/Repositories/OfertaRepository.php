@@ -24,7 +24,8 @@ class OfertaRepository extends AbstractRepository
         'tx_nome_oferta' => 'ilike',
         'id_tipo_oferta',
         'id_ava',
-        'tp_situacao_oferta' => 'LIKE',
+        'tp_situacao_oferta',
+        'id_curso',
     ];
 
     /**

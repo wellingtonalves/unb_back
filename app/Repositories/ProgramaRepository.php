@@ -21,6 +21,7 @@ class ProgramaRepository extends AbstractRepository
     protected $fieldSearchable = [
         'tx_nome_programa' => 'ilike',
         'tp_situacao_programa',
+        'bl_programa_destaque',
     ];
 
     /**
