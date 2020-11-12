@@ -24,7 +24,7 @@ class CursoRepository extends AbstractRepository
         'id_legado_curso',
         'id_tematica_curso',
         'qt_carga_horaria_minima',
-        'tx_nome_curso' =>'like',
+        'tx_nome_curso' => 'ilike',
         'tp_situacao_curso',
         'tx_conteudo_programatico',
         'tx_apresentacao',
