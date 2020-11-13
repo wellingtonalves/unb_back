@@ -40,8 +40,7 @@ class AvaService extends AbstractService
     /**
      *
      * @param int $id
-     * @return AvaRepository
-     * @throws Exception
+     * @return Response
      */
     public function find($id)
     {
@@ -58,43 +57,23 @@ class AvaService extends AbstractService
 
     /**
      *
-     * @param $request
-     * @return AvaRepository
-     * @throws Exception
+     * @param Request $request
+     * @return Response
      */
     public function create($request)
     {
-        $infoSite = $this->buscaInfoSite($request);
-        $statusOperacao = 'success_operation';
-        if ($infoSite instanceof Exception) {
-            $request->merge(['tp_situacao_ava' => 'I']);
-            $request->merge(['tp_operacional' => 'N']);
-            $statusOperacao = 'error_operation';
-        }
-
-        $ava = parent::create($request);
-        $ava->statusOperacao = $statusOperacao;
-        return $ava;
+        return $this->cadastraOuAtualizaAva($request);
     }
 
     /**
      *
-     * @param $request
-     * @return AvaRepository
-     * @throws Exception
+     * @param Request $request
+     * @param $id
+     * @return Response
      */
     public function update($request, $id)
     {
-        $infoSite = $this->buscaInfoSite($request);
-        $statusOperacao = 'success_operation';
-        if ($infoSite instanceof Exception) {
-            $request->merge(['tp_situacao_ava' => 'I']);
-            $request->merge(['tp_operacional' => 'N']);
-            $statusOperacao = 'error_operation';
-        }
-
-        $ava = parent::update($request, $id);
-        return $ava ? $statusOperacao : $ava;
+        return $this->cadastraOuAtualizaAva($request, $id);
     }
     
     /**
@@ -128,5 +107,32 @@ class AvaService extends AbstractService
         $metodoInfoSite = 'buscaInfoSite' . $tipoAva;
 
         return $this->$service->$metodoInfoSite($request->tx_url, $request->tx_token);
+    }
+
+    /**
+     * Metodo para reutilizar codigo no update e create
+     *
+     * @param Request $request
+     * @param null|int $id
+     * @return Response
+     */
+    protected function cadastraOuAtualizaAva($request, $id = null)
+    {
+        try {
+            $infoSite = $this->buscaInfoSite($request);
+            $statusOperacao = 'success_operation';
+            if ($infoSite instanceof Exception) {
+                $request->merge(['tp_situacao_ava' => 'I']);
+                $request->merge(['tp_operacional' => 'N']);
+                $statusOperacao = 'partial_error_operation';
+            }
+
+            $data = $id ? $this->repository->update($request->all(), $id) : $this->repository->create($request->all());
+            
+            return Response::custom($statusOperacao, $data);
+        } catch (Exception $exception) {
+            Log::info($exception->getMessage());
+            return Response::custom('error_operation', $exception);
+        }
     }
 }

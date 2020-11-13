@@ -10,8 +10,10 @@ return [
     'detail' => 'Detalhe',
     'success_operation' => 'Operação realizada com sucesso.',
     'error_operation' => 'Operação realizada com erro.',
+    'partial_error_operation' => 'Operação realizada parcialmente.',
     'message_type' => [
         'erro' => 'error',
-        'sucesso' => 'success'
+        'sucesso' => 'success',
+        'partcial' => 'partial'
     ]
 ];
