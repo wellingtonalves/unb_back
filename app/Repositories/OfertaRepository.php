@@ -12,7 +12,8 @@ class OfertaRepository extends AbstractRepository
      * @return string
      */
     public $relationships = [
-        'tipoOferta'
+        'tipoOferta',
+        'exclusividade'
     ];
 
     /**

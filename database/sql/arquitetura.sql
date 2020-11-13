@@ -49,7 +49,7 @@ insert into tb_tipo_exclusividade_oferta (tx_nome_tipo_exclusividade_oferta, tx_
 values ('C', 'CPF', current_date, current_date);
 
 insert into tb_tipo_exclusividade_oferta (tx_nome_tipo_exclusividade_oferta, tx_descricao_tipo_exclusividade_oferta, created_at, updated_at)
-values ('M', 'Misto (é utilizado tanto para e-mail quanto CPF', current_date, current_date);
+values ('M', 'Misto - (é utilizado tanto para e-mail quanto CPF)', current_date, current_date);
 
 alter table tb_exclusividade_oferta
     add deleted_at timestamp(0);
