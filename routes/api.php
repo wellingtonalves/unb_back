@@ -55,6 +55,7 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
         Route::resource('ofertas', 'OfertaController', ['except' => $excepts]);
         Route::resource('parceiros', 'ParceiroController', ['except' => $excepts]);
         Route::resource('programas', 'ProgramaController', ['except' => $excepts]);
+        Route::resource('exclusividade-oferta', 'ExclusividadeOfertaController', ['except' => $excepts]);
     });
 
 });
