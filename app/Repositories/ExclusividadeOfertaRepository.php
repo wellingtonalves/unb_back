@@ -2,9 +2,9 @@
 
 namespace App\Repositories;
 
-use App\Models\Oferta;
+use App\Models\ExclusividadeOferta;
 
-class OfertaRepository extends AbstractRepository
+class ExclusividadeOfertaRepository extends AbstractRepository
 {
     /**
      * Relationships
@@ -12,8 +12,9 @@ class OfertaRepository extends AbstractRepository
      * @return string
      */
     public $relationships = [
-        'tipoOferta',
-        'exclusividade'
+        'oferta',
+        'tipoExclusividade',
+        'orgaoParceiros'
     ];
 
     /**
@@ -22,11 +23,10 @@ class OfertaRepository extends AbstractRepository
      * @return string
      */
     protected $fieldSearchable = [
-        'tx_nome_oferta' => 'ilike',
-        'id_tipo_oferta',
-        'id_ava',
-        'tp_situacao_oferta',
-        'id_curso',
+        'id_oferta',
+        'id_orgao_parceiro',
+        'id_tipo_exclusividade_oferta',
+        'tipoExclusividade.tx_nome_tipo_exclusividade_oferta'
     ];
 
     /**
@@ -36,7 +36,7 @@ class OfertaRepository extends AbstractRepository
      */
     public function model()
     {
-        return Oferta::class;
+        return ExclusividadeOferta::class;
     }
 
 }

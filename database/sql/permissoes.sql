@@ -58,6 +58,12 @@ INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('PR
 INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('PROGRAMA_EDITAR', current_date, current_date);
 INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('PROGRAMA_EXCLUIR', current_date, current_date);
 
+INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('EXCLUSIVIDADE_LISTAR', current_date, current_date);
+INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('EXCLUSIVIDADE_DETALHAR', current_date, current_date);
+INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('EXCLUSIVIDADE_INCLUIR', current_date, current_date);
+INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('EXCLUSIVIDADE_EDITAR', current_date, current_date);
+INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('EXCLUSIVIDADE_EXCLUIR', current_date, current_date);
+
 -- DOMAIN
 INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('SITUACAO_USUARIO_LISTAR', current_date, current_date);
 INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('SITUACAO_USUARIO_DETALHAR', current_date, current_date);
@@ -71,6 +77,8 @@ INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('TI
 INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('TIPO_OFETA_DETALHAR', current_date, current_date);
 INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('MODELO_CERTIFICADO_LISTAR', current_date, current_date);
 INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('MODELO_CERTIFICADO_DETALHAR', current_date, current_date);
+INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('TIPO_EXCLUSIVIDADE_OFERTA_LISTAR', current_date, current_date);
+INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('TIPO_EXCLUSIVIDADE_OFERTA_DETALHAR', current_date, current_date);
 
 --VIEW
 INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('VW_VALIDACAO_CERTIFICADO_DETALHAR', current_date, current_date);

@@ -41,6 +41,7 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
             Route::resource('uf', 'UfController', $optionsReadOnly);
             Route::resource('tipo-oferta', 'TipoOfertaController', $optionsReadOnly);
             Route::resource('modelo-certificado', 'ModeloCertificadoController', $optionsReadOnly);
+            Route::resource('tipo-exclusividade-oferta', 'TipoExclusividadeOfertaController', $optionsReadOnly);
         });
 
         Route::resource('curso', 'CursoController', ['except' => $excepts]);
@@ -54,6 +55,7 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
         Route::resource('ofertas', 'OfertaController', ['except' => $excepts]);
         Route::resource('parceiros', 'ParceiroController', ['except' => $excepts]);
         Route::resource('programas', 'ProgramaController', ['except' => $excepts]);
+        Route::resource('exclusividade-oferta', 'ExclusividadeOfertaController', ['except' => $excepts]);
     });
 
 });
