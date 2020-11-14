@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Domain\CriterioPrograma;
 use App\Models\Domain\ModeloCertificado;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -61,7 +62,7 @@ class Programa extends AbstractModel
      */
     public function getDtInicioValidadeFormatadaAttribute()
     {
-        return !$this->attributes['dt_inicio_validade'] ? null : date('d-m-Y', strtotime($this->attributes['dt_inicio_validade']));
+        return formataData($this->attributes['dt_inicio_validade']);
     }
 
     /**
@@ -69,6 +70,6 @@ class Programa extends AbstractModel
      */
     public function getDtTerminoValidadeFormatadaAttribute()
     {
-        return !$this->attributes['dt_termino_validade'] ? null : date('d-m-Y', strtotime($this->attributes['dt_termino_validade']));
+        return formataData($this->attributes['dt_termino_validade']);
     }
 }
