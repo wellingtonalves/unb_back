@@ -50,7 +50,7 @@ class Oferta extends AbstractModel
         'tp_origem_oferta',
     ];
 
-    protected $appends = ['total_ofertas'];
+    protected $appends = ['total_inscricoes'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -79,7 +79,7 @@ class Oferta extends AbstractModel
     /**
      * @return int
      */
-    public function getTotalOfertasAttribute()
+    public function getTotalInscricoesAttribute()
     {
         return $this->inscricao()->count();
     }
