@@ -18,3 +18,5 @@ ALTER TABLE tb_pais ADD COLUMN deleted_at timestamp(0);
 ALTER TABLE tb_situacao_usuario ADD COLUMN deleted_at timestamp(0);
 ALTER TABLE tb_tipo_oferta ADD COLUMN deleted_at timestamp(0);
 ALTER TABLE tb_unidade_federacao ADD COLUMN deleted_at timestamp(0);
+ALTER TABLE tb_exclusividade_oferta ADD COLUMN deleted_at timestamp(0);
+ALTER TABLE tb_valor_exclusividade_oferta ADD COLUMN deleted_at timestamp(0);

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Domain\TipoExclusividadeOferta;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ExclusividadeOferta extends AbstractModel
 {
@@ -30,5 +31,10 @@ class ExclusividadeOferta extends AbstractModel
     public function orgaoParceiros(): BelongsTo
     {
         return $this->belongsTo(Parceiro::class, 'id_orgao_parceiro', 'id_parceiros');
+    }
+
+    public function valorExclusividade(): HasMany
+    {
+        return $this->hasMany(ValorExclusividadeOferta::class, 'id_exclusividade_oferta', 'id_exclusividade_oferta');
     }
 }
