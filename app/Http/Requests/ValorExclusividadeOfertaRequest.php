@@ -26,7 +26,8 @@ class ValorExclusividadeOfertaRequest extends FormRequest
     {
         return [
             'id_exclusividade_oferta' => 'required',
-            'valor_exclusividade' => 'required',
+            'valor_exclusividade' => 'required_without:anexo',
+            'anexo' => 'required_without:valor_exclusividade'
         ];
     }
 
@@ -35,6 +36,7 @@ class ValorExclusividadeOfertaRequest extends FormRequest
         return [
             'id_exclusividade_oferta' => 'Exclusividade',
             'valor_exclusividade' => 'Valor',
+            'anexo' => 'Anexo'
         ];
     }
 }
