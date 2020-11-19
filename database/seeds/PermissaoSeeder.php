@@ -97,6 +97,10 @@ class PermissaoSeeder extends Seeder
             ['tx_nome_permissao' => 'EXCLUSIVIDADE_EDITAR'],
             ['tx_nome_permissao' => 'CRITERIO_PROGRAMA_LISTAR'],
             ['tx_nome_permissao' => 'CRITERIO_PROGRAMA_DETALHAR'],
+            ['tx_nome_permissao' => 'VALOR_EXCLUSIVIDADE_LISTAR'],
+            ['tx_nome_permissao' => 'VALOR_EXCLUSIVIDADE_DETALHAR'],
+            ['tx_nome_permissao' => 'VALOR_EXCLUSIVIDADE_INCLUIR'],
+            ['tx_nome_permissao' => 'VALOR_EXCLUSIVIDADE_EDITAR'],
 
             ['tx_nome_permissao' => 'VW_VALIDACAO_CERTIFICADO_DETALHAR'],
             ['tx_nome_permissao' => 'VW_CURSOS_REALIZADOS_LISTAR'],
