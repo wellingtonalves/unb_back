@@ -42,6 +42,7 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
             Route::resource('tipo-oferta', 'TipoOfertaController', $optionsReadOnly);
             Route::resource('modelo-certificado', 'ModeloCertificadoController', $optionsReadOnly);
             Route::resource('tipo-exclusividade-oferta', 'TipoExclusividadeOfertaController', $optionsReadOnly);
+            Route::resource('criterio-programa', 'CriterioProgramaController', $optionsReadOnly);
         });
 
         Route::resource('curso', 'CursoController', ['except' => $excepts]);

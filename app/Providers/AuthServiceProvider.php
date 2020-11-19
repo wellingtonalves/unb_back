@@ -37,6 +37,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\View\VwValidacaoCertificado' => 'App\Policies\VwValidacaoCertificadoPolicy',
         'App\Models\View\VwCursosRealizados' => 'App\Policies\VwCursosRealizadosPolicy',
         'App\Models\View\VwEmissaoCertificado' => 'App\Policies\VwEmissaoCertificadoPolicy',
+        'App\Models\Domain\CriterioPrograma' => 'App\Policies\Domain\CriterioProgramaPolicy',
     ];
 
     /**
