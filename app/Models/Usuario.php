@@ -37,6 +37,8 @@ class Usuario extends Authenticatable
         'remember_token',
     ];
 
+    public $nested = ['pessoa'];
+
     /**
      * @param $username
      * @return mixed

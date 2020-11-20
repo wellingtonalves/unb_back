@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-
 use App\Repositories\UsuarioRepository;
 
 class UsuarioService extends AbstractService
