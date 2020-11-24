@@ -28,14 +28,24 @@ class CanvasRepository
      * @param string $url
      * @param string $token
      */
-    public function setAvaCanvas($url, $token)
+    public function setAvaCanvas($idAva = null, $url = null, $token = null)
     {
-        $this->url = $url;
-        $this->token = $token;
+        if ($idAva) {
+            $ava = $this->avaRepository->find($idAva)->get();
 
-        $ava = $this->avaRepository->where('tx_url', '=', $url)->where('tx_token', '=', $token)
-            ->where('tp_ava', '=', 'CANVAS')->get();
-        $this->idAva = $ava->isNotEmpty() ? $ava->first()->getKey() : null;
+            if ($ava->isNotEmpty()) {
+                $this->idAva = $ava->first()->getKey();
+                $this->url = $ava->first()->tx_url;
+                $this->token = $ava->first()->tx_token;
+            }
+        } else {
+            $this->url = $url;
+            $this->token = $token;
+    
+            $ava = $this->avaRepository->where('tx_url', '=', $url)->where('tx_token', '=', $token)
+                ->where('tp_ava', '=', 'CANVAS')->get();
+            $this->idAva = $ava->isNotEmpty() ? $ava->first()->getKey() : null;
+        }
     }
 
     /**
@@ -78,5 +88,28 @@ class CanvasRepository
     public function getSiteInfo()
     {
         return $this->servicoCanvas('/v1/accounts', 'GET', null);
+    }
+
+    /**
+     * Atualiza usuario no Canvas
+     *
+     * @param int $idUsuarioCanvas
+     * @param array $parametros
+     * @return json|false
+     */
+    public function setUsuarioCanvas($idUsuarioCanvas, $parametros)
+    {
+        return $this->servicoCanvas('/v1/users/' . $idUsuarioCanvas, 'PUT', $parametros);
+    }
+
+    /**
+     * Consulta Usuario no Canvas
+     *
+     * @param string $idEvg
+     * @return json|false
+     */
+    protected function getUsuarioCanvas($idEvg)
+    {
+        return $this->servicoCanvas('/v1/accounts/self/users', 'GET', ['search_term' => $idEvg]);
     }
 }

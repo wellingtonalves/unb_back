@@ -27,14 +27,24 @@ class MoodleRepository
      * @param string $url
      * @param string $token
      */
-    public function setAvaMoodle($url, $token)
+    public function setAvaMoodle($idAva = null, $url = null, $token = null)
     {
-        $this->url = $url;
-        $this->token = $token;
+        if ($idAva) {
+            $ava = $this->avaRepository->find($idAva)->get();
 
-        $ava = $this->avaRepository->where('tx_url', '=', $url)->where('tx_token', '=', $token)
-            ->where('tp_ava', '=', 'MOODLE')->get();
-        $this->idAva = $ava->isNotEmpty() ? $ava->first()->getKey() : null;
+            if ($ava->isNotEmpty()) {
+                $this->idAva = $ava->first()->getKey();
+                $this->url = $ava->first()->tx_url;
+                $this->token = $ava->first()->tx_token;
+            }
+        } else {
+            $this->url = $url;
+            $this->token = $token;
+
+            $ava = $this->avaRepository->where('tx_url', '=', $url)->where('tx_token', '=', $token)
+                ->where('tp_ava', '=', 'MOODLE')->get();
+            $this->idAva = $ava->isNotEmpty() ? $ava->first()->getKey() : null;
+        }
     }
 
     /**
@@ -70,7 +80,6 @@ class MoodleRepository
         }
     }
 
-
     /**
      * Informacoes do AVA
      *
@@ -79,5 +88,32 @@ class MoodleRepository
     public function getSiteInfo()
     {
         return $this->servicoMoodle("core_webservice_get_site_info", []);
+    }
+
+    /**
+     * Consulta usuario no Moodle
+     *
+     * @param string $keyParam
+     * @param string $valueParam
+     * @return json|false
+     */
+    protected function getUsuarioMoodle($keyParam, $valueParam)
+    {
+        $parametros = [];
+        $parametros['field'] = $keyParam;
+        $parametros['values'][0] = $valueParam;
+
+        return $this->servicoMoodle('core_user_get_users_by_field', $parametros);
+    }
+
+    /**
+     * Atualiza o usuario no Moodle
+     *
+     * @param array $parametros
+     * @return json|false
+     */
+    public function setUsuarioMoodle($parametros)
+    {
+        $this->servicoMoodle('core_user_update_users', $parametros);
     }
 }

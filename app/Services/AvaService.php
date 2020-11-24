@@ -75,24 +75,6 @@ class AvaService extends AbstractService
     {
         return $this->cadastraOuAtualizaAva($request, $id);
     }
-    
-    /**
-     * Retorna o tipo de AVA para ser utilizado nas chamadas dos metodos do AVA
-     *
-     * @param string $tipoAva
-     * @return string
-     */
-    public function tipoAva($tipoAva = null)
-    {
-        if ($tipoAva) {
-            switch ($tipoAva) {
-                case 'MOODLE':
-                    return 'Moodle';
-                case 'CANVAS':
-                    return 'Canvas';
-            }
-        }
-    }
 
     /**
      * Busca informacoes para validar AVA de acordo por tipo de AVA
@@ -102,9 +84,8 @@ class AvaService extends AbstractService
      */
     protected function buscaInfoSite($request)
     {
-        $tipoAva = $this->tipoAva($request->tp_ava);
-        $service = strtolower($tipoAva).'Service';
-        $metodoInfoSite = 'buscaInfoSite' . $tipoAva;
+        $service = strtolower($request->tp_ava).'Service';
+        $metodoInfoSite = 'buscaInfoSite' . ucfirst(strtolower($request->tp_ava));
 
         return $this->$service->$metodoInfoSite($request->tx_url, $request->tx_token);
     }
