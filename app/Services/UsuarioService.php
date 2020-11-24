@@ -2,8 +2,12 @@
 
 namespace App\Services;
 
+use App\Repositories\InscricaoRepository;
 use App\Repositories\UsuarioRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Exception;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 class UsuarioService extends AbstractService
 {
@@ -12,6 +16,11 @@ class UsuarioService extends AbstractService
      * @var UsuarioRepository
      */
     protected $repository;
+
+    /**
+     * @var InscricaoRepository
+     */
+    protected $inscricaoRepository;
 
     /**
      * @var MoodleService
@@ -27,14 +36,21 @@ class UsuarioService extends AbstractService
      * CursoService constructor.
      * @param UsuarioRepository $repository
      */
-    public function __construct(UsuarioRepository $repository, MoodleService $moodleService, CanvasService $canvasService)
+    public function __construct(UsuarioRepository $repository, InscricaoRepository $inscricaoRepository, MoodleService $moodleService, CanvasService $canvasService)
     {
         $this->repository = $repository;
+        $this->inscricaoRepository = $inscricaoRepository;
         $this->moodleService = $moodleService;
         $this->canvasService = $canvasService;
     }
 
-    public function update(Request $request)
+    /**
+     *
+     * @param Request $request
+     * @param $id
+     * @return Response
+     */
+    public function update(Request $request, $id)
     {
 
         /**
@@ -43,9 +59,52 @@ class UsuarioService extends AbstractService
          * 
          * tb_inscricao > tb_oferta > tb_ava
          */
+        $inscricao = $this->inscricaoRepository->with($this->inscricaoRepository->relationships)->find($id);
+        if ($inscricao) {
+            $request->ava = $inscricao->oferta->ava;
+            return $this->cadastraOuAtualizaAva($request, $id);
+        }
+        return $this->repository->update($request->all(), $id);
+    }
 
-        // Para fazer a chamada na API dos AVAs
-        $service = strtolower($consulta->tp_ava).'Service';
-        $metodoInfoSite = 'atualizaUsuario' . ucfirst(strtolower($request->tp_ava));
+    /**
+     * Busca informacoes para validar AVA de acordo por tipo de AVA
+     *
+     * @param Request $request
+     * @return mixed
+     */
+    protected function buscaInfoSite($request)
+    {
+        $typeAva = str_replace(' ', '', strtolower($request->ava->tp_ava));
+        $service =  $typeAva . 'Service';
+        $metodoInfoSite = 'buscaInfoSite' . ucfirst($typeAva);
+        return $this->$service->$metodoInfoSite($request->ava->tx_url, $request->ava->tx_token);
+    }
+
+    /**
+     * Metodo para reutilizar codigo no update e create
+     *
+     * @param Request $request
+     * @param null|int $id
+     * @return Response
+     */
+    protected function cadastraOuAtualizaAva($request, $id = null)
+    {
+        try {
+            $infoSite = $this->buscaInfoSite($request);
+            $statusOperacao = 'success_operation';
+            if ($infoSite instanceof Exception) {
+                $request->merge(['tp_situacao_ava' => 'I']);
+                $request->merge(['tp_operacional' => 'N']);
+                $statusOperacao = 'partial_error_operation';
+            }
+            unset($request['ava']);
+            $data = $id ? $this->repository->update($request->all(), $id) : $this->repository->create($request->all());
+
+            return Response::custom($statusOperacao, $data);
+        } catch (Exception $exception) {
+            Log::info($exception->getMessage());
+            return Response::custom('error_operation', $exception);
+        }
     }
 }
