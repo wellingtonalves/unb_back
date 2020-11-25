@@ -69,7 +69,6 @@ class UsuarioService extends AbstractService
             foreach($inscricoes as $inscricao) {
                 if(!in_array($inscricao->oferta->ava->id_ava, $arrAvas)) {
                     $arrAvas[] = $inscricao->oferta->ava->id_ava;
-                    Log::info($inscricao->oferta->ava->id_ava);
                     $this->atualizaUsuarioAva($data, $inscricao->oferta->ava->id_ava, $inscricao->oferta->ava->tp_ava);
                 }
             }
