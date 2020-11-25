@@ -30,7 +30,9 @@ class MoodleRepository
     public function setAvaMoodle($idAva = null, $url = null, $token = null)
     {
         if ($idAva) {
-            $ava = $this->avaRepository->find($idAva)->get();
+            $ava = $this->avaRepository->where('id_ava', '=', $idAva)->where('tp_ava', '=', 'MOODLE')
+                ->where('tp_situacao_ava', '=', 'A')
+                ->where('tp_operacional', '=', 'S')->get();
 
             if ($ava->isNotEmpty()) {
                 $this->idAva = $ava->first()->getKey();
@@ -42,7 +44,8 @@ class MoodleRepository
             $this->token = $token;
 
             $ava = $this->avaRepository->where('tx_url', '=', $url)->where('tx_token', '=', $token)
-                ->where('tp_ava', '=', 'MOODLE')->get();
+                ->where('tp_ava', '=', 'MOODLE')->where('tp_situacao_ava', '=', 'A')
+                ->where('tp_operacional', '=', 'S')->get();
             $this->idAva = $ava->isNotEmpty() ? $ava->first()->getKey() : null;
         }
     }
@@ -97,7 +100,7 @@ class MoodleRepository
      * @param string $valueParam
      * @return json|false
      */
-    protected function getUsuarioMoodle($keyParam, $valueParam)
+    public function getUsuarioMoodle($keyParam, $valueParam)
     {
         $parametros = [];
         $parametros['field'] = $keyParam;

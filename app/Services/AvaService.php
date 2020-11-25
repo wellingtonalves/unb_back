@@ -84,8 +84,9 @@ class AvaService extends AbstractService
      */
     protected function buscaInfoSite($request)
     {
-        $service = strtolower($request->tp_ava).'Service';
-        $metodoInfoSite = 'buscaInfoSite' . ucfirst(strtolower($request->tp_ava));
+        $tipoAva = strtolower(trim($request->tp_ava));
+        $service = $tipoAva.'Service';
+        $metodoInfoSite = 'buscaInfoSite' . ucfirst($tipoAva);
 
         return $this->$service->$metodoInfoSite($request->tx_url, $request->tx_token);
     }

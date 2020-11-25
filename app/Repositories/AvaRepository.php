@@ -21,6 +21,7 @@ class AvaRepository extends AbstractRepository
      * @return string
      */
     protected $fieldSearchable = [
+        'id_ava',
         'tx_url' => 'like',
         'tp_situacao_ava',
         'tx_nome_ava' => 'like',

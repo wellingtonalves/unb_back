@@ -31,7 +31,9 @@ class CanvasRepository
     public function setAvaCanvas($idAva = null, $url = null, $token = null)
     {
         if ($idAva) {
-            $ava = $this->avaRepository->find($idAva)->get();
+            $ava = $this->avaRepository->where('id_ava', '=', $idAva)->where('tp_ava', '=', 'CANVAS')
+                ->where('tp_situacao_ava', '=', 'A')
+                ->where('tp_operacional', '=', 'S')->get();
 
             if ($ava->isNotEmpty()) {
                 $this->idAva = $ava->first()->getKey();
@@ -43,7 +45,8 @@ class CanvasRepository
             $this->token = $token;
     
             $ava = $this->avaRepository->where('tx_url', '=', $url)->where('tx_token', '=', $token)
-                ->where('tp_ava', '=', 'CANVAS')->get();
+                ->where('tp_ava', '=', 'CANVAS')->where('tp_situacao_ava', '=', 'A')
+                ->where('tp_operacional', '=', 'S')->get();
             $this->idAva = $ava->isNotEmpty() ? $ava->first()->getKey() : null;
         }
     }
@@ -108,7 +111,7 @@ class CanvasRepository
      * @param string $idEvg
      * @return json|false
      */
-    protected function getUsuarioCanvas($idEvg)
+    public function getUsuarioCanvas($idEvg)
     {
         return $this->servicoCanvas('/v1/accounts/self/users', 'GET', ['search_term' => $idEvg]);
     }
