@@ -23,6 +23,11 @@ class UsuarioRequest extends FormRequest
      */
     public function rules()
     {
+        if ($this->tx_senha_usuario) {
+            return [
+                'tx_senha_usuario' => 'required|string|max:255',
+            ];
+        }
         return [
             'id_situacao_usuario' => 'required',
             'id_perfil' => 'required',
@@ -43,6 +48,7 @@ class UsuarioRequest extends FormRequest
             'id_situacao_usuario' => 'Situação',
             'id_perfil' => 'Perfil',
             'tx_login_usuario' => 'Login',
+            'tx_senha_usuario' => 'Senha',
             'pessoa.tx_nome_pessoa' => 'Nome',
             'pessoa.tp_sexo' => 'Sexo',
             'pessoa.tx_email_pessoa' => 'E-mail',

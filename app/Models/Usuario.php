@@ -24,7 +24,8 @@ class Usuario extends Authenticatable
         'tx_login_usuario',
         'tp_metodo_autenticacao',
         'dt_alteracao_login',
-        'id_rede_social'
+        'id_rede_social',
+        'tx_senha_usuario'
     ];
 
     /**
