@@ -31,9 +31,8 @@ class CanvasRepository
     public function setAvaCanvas($idAva = null, $url = null, $token = null)
     {
         if ($idAva) {
-            $ava = $this->avaRepository->where('id_ava', '=', $idAva)->where('tp_ava', '=', 'CANVAS')
-                ->where('tp_situacao_ava', '=', 'A')
-                ->where('tp_operacional', '=', 'S')->get();
+            $ava = $this->avaRepository->findWhere(['id_ava' => $idAva, ['tp_ava', '=', 'CANVAS'], 
+                ['tp_situacao_ava', '=', 'A'], ['tp_operacional', '=', 'S']]);
 
             if ($ava->isNotEmpty()) {
                 $this->idAva = $ava->first()->getKey();
@@ -44,9 +43,8 @@ class CanvasRepository
             $this->url = $url;
             $this->token = $token;
     
-            $ava = $this->avaRepository->where('tx_url', '=', $url)->where('tx_token', '=', $token)
-                ->where('tp_ava', '=', 'CANVAS')->where('tp_situacao_ava', '=', 'A')
-                ->where('tp_operacional', '=', 'S')->get();
+            $ava = $this->avaRepository->findWhere([['tx_url', '=', $url], ['tx_token', '=', $token], 
+                ['tp_ava', '=', 'CANVAS'], ['tp_situacao_ava', '=', 'A'], ['tp_operacional', '=', 'S']]);
             $this->idAva = $ava->isNotEmpty() ? $ava->first()->getKey() : null;
         }
     }
