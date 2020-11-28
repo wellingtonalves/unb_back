@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\{Oferta, Pessoa};
+use App\Models\Oferta;
+use App\Models\Pessoa;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Inscricao extends AbstractModel
