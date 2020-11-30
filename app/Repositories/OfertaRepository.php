@@ -14,7 +14,8 @@ class OfertaRepository extends AbstractRepository
     public $relationships = [
         'tipoOferta',
         'exclusividade',
-        'exclusividade.valorExclusividade'
+        'exclusividade.valorExclusividade',
+        'ava'
     ];
 
     /**

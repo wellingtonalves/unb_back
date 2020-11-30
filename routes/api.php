@@ -50,6 +50,7 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
         Route::resource('ava', 'AvaController', ['except' => $excepts]);
         Route::resource('orgao', 'OrgaoController', ['except' => $excepts]);
         Route::resource('usuario', 'UsuarioController', ['except' => $excepts]);
+        Route::put('usuario/{idUser}/resetar-senha', 'UsuarioController@resetPassword');
         Route::resource('perfil', 'PerfilController', ['except' => $excepts]);
         Route::resource('tarefa-agendada', 'TarefaAgendadaController', ['except' => $excepts]);
         Route::resource('permissao', 'PermissaoController', ['except' => $excepts]);
