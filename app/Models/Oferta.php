@@ -53,14 +53,6 @@ class Oferta extends AbstractModel
     protected $appends = ['total_inscricoes'];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function tipoOferta(): BelongsTo
-    {
-        return $this->belongsTo(TipoOferta::class, 'id_tipo_oferta');
-    }
-
-    /**
      * @return string
      */
     public function getTpComTutoriaAttribute()
@@ -85,6 +77,14 @@ class Oferta extends AbstractModel
     }
 
     /**
+     * @return BelongsTo
+     */
+    public function tipoOferta(): BelongsTo
+    {
+        return $this->belongsTo(TipoOferta::class, 'id_tipo_oferta');
+    }
+
+    /**
      * @return HasMany
      */
     public function inscricao(): HasMany
@@ -96,5 +96,10 @@ class Oferta extends AbstractModel
     public function exclusividade(): HasOne
     {
         return $this->hasOne(ExclusividadeOferta::class, 'id_oferta', 'id_oferta');
+    }
+
+    public function curso(): BelongsTo
+    {
+        return $this->belongsTo(Curso::class, 'id_curso', 'id_curso');
     }
 }
