@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Domain\TipoOferta;
+use App\Models\Ava;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -101,5 +102,13 @@ class Oferta extends AbstractModel
     public function curso(): BelongsTo
     {
         return $this->belongsTo(Curso::class, 'id_curso', 'id_curso');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function ava(): BelongsTo
+    {
+        return $this->belongsTo(Ava::class, 'id_ava');
     }
 }

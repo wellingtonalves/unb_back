@@ -8,6 +8,7 @@ use App\Models\Usuario;
 use App\Services\UsuarioService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends AbstractController
 {
@@ -53,4 +54,15 @@ class UsuarioController extends AbstractController
         return parent::updateAs($request, $id);
     }
 
+    /**
+     * @param UsuarioRequest $request
+     * @param $id
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function resetPassword(UsuarioRequest $request, $id)
+    {
+        $request['tx_senha_usuario'] = Hash::make($request['tx_senha_usuario']);
+        return parent::updateAs($request, $id);
+    }
 }

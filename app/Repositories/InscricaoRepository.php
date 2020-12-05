@@ -14,7 +14,7 @@ class InscricaoRepository extends AbstractRepository
     public $relationships = [
         'oferta',
         'oferta.curso',
-        'pessoa',
+        'pessoa'
     ];
 
     /**
@@ -28,7 +28,8 @@ class InscricaoRepository extends AbstractRepository
         'id_pessoa',
         'nr_codigo_validador',
         'tp_situacao_inscricao',
-        'dt_fim_inscricao'
+        'dt_fim_inscricao',
+        'tp_ava',
     ];
 
     /**

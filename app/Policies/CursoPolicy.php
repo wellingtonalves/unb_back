@@ -8,21 +8,19 @@ class CursoPolicy extends AbstractPolicy
 {
 
     /**
-     * @param Usuario $usuario
      * @return bool
      */
-    public function index(Usuario $usuario)
+    public function index()
     {
-        return self::check('CURSO_LISTAR', $usuario);
+        return true;
     }
 
     /**
-     * @param Usuario $usuario
      * @return bool
      */
-    public function show(Usuario $usuario)
+    public function show()
     {
-        return self::check('CURSO_DETALHAR', $usuario);
+        return true;
     }
 
     /**
