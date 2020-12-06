@@ -84,7 +84,7 @@ class MoodleRepository
     /**
      * Informacoes do AVA
      *
-     * @return json|false
+     * @return mixed
      */
     public function getSiteInfo()
     {
@@ -96,7 +96,7 @@ class MoodleRepository
      *
      * @param string $keyParam
      * @param string $valueParam
-     * @return json|false
+     * @return mixed
      */
     public function getUsuarioMoodle($keyParam, $valueParam)
     {
@@ -111,10 +111,24 @@ class MoodleRepository
      * Atualiza o usuario no Moodle
      *
      * @param array $parametros
-     * @return json|false
+     * @return mixed
      */
     public function setUsuarioMoodle($parametros)
     {
         $this->servicoMoodle('core_user_update_users', $parametros);
+    }
+
+    /**
+     * Consulta curso no Moodle pelo idnumber atraves do id_oferta
+     *
+     * @param string $keyParam
+     * @param string $valueParam
+     * @return mixed
+     */
+    public function getCursoMoodle($keyParam, $valueParam)
+    {
+        $parametros['field'] = $keyParam;
+        $parametros['value'] = $valueParam;
+        return $this->servicoMoodle('core_course_get_courses_by_field', $parametros);
     }
 }

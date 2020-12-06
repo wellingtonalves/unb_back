@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\Ava;
+use App\Models\Oferta;
 use App\Repositories\InscricaoRepository;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
@@ -20,12 +22,24 @@ class InscricaoService extends AbstractService
     private $today;
 
     /**
+     * @var MoodleService
+     */
+    protected $moodleService;
+
+    /**
+     * @var CanvasService
+     */
+    protected $canvasService;
+
+    /**
      * CursoService constructor.
      * @param InscricaoRepository $repository
      */
-    public function __construct(InscricaoRepository $repository)
+    public function __construct(InscricaoRepository $repository, MoodleService $moodleService, CanvasService $canvasService)
     {
         $this->repository = $repository;
+        $this->moodleService = $moodleService;
+        $this->canvasService = $canvasService;
         $this->today = date('Y-m-d H:m:s', time());
     }
 
@@ -47,9 +61,14 @@ class InscricaoService extends AbstractService
                     ['tp_situacao_inscricao', '=', 'APROVADO']
                 ]);
             });
-            $data = request()->pagination == 'false' ? $data->all() : $data->paginate($perPage);
 
-            return Response::custom('success_operation', $data);
+            $inscricoes = request()->pagination == 'false' ? $data->all() : $data->paginate($perPage);
+            
+            for($i=0;$i<count($inscricoes);$i++) {
+                $inscricoes[$i]->tx_url_ava = $this->retornaUrlCursoAva($inscricoes[$i]->oferta);
+            }
+
+            return Response::custom('success_operation', $inscricoes);
         } catch (Exception $exception) {
             Log::info($exception->getMessage());
             return Response::custom('error_operation', $exception);
@@ -101,5 +120,17 @@ class InscricaoService extends AbstractService
             Log::info($exception->getMessage());
             return Response::custom('error_operation', $exception);
         }
+    }
+
+    /**
+     * @param Oferta $oferta
+     * @return mixed
+     */
+    protected function retornaUrlCursoAva(Oferta $oferta)
+    {
+        $typeAva = strtolower(trim($oferta->ava->tp_ava));
+        $service =  $typeAva . 'Service';
+        $metodoAtualizaUsuario = 'retornaUrlCurso' . ucfirst($typeAva);
+        return $this->$service->$metodoAtualizaUsuario($oferta, $oferta->ava);
     }
 }

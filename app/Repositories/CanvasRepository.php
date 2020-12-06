@@ -84,7 +84,7 @@ class CanvasRepository
     /**
      * Informacoes do AVA
      *
-     * @return json|false
+     * @return mixed
      */
     public function getSiteInfo()
     {
@@ -96,7 +96,7 @@ class CanvasRepository
      *
      * @param int $idUsuarioCanvas
      * @param array $parametros
-     * @return json|false
+     * @return mixed
      */
     public function setUsuarioCanvas($idUsuarioCanvas, $parametros)
     {
@@ -107,10 +107,21 @@ class CanvasRepository
      * Consulta Usuario no Canvas
      *
      * @param string $idEvg
-     * @return json|false
+     * @return mixed
      */
     public function getUsuarioCanvas($idEvg)
     {
         return $this->servicoCanvas('/v1/accounts/self/users', 'GET', ['search_term' => $idEvg]);
+    }
+
+    /**
+     * Consulta curso (section) no Canvas de acordo com o id_curso
+     *
+     * @param int $idEvg
+     * @return mixed
+     */
+    public function getCursoCanvas($idEvg)
+    {
+        return $this->servicoCanvas('/v1/accounts/self/courses', 'GET', ['search_term' => $idEvg]);;
     }
 }

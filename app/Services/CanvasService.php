@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\Ava;
+use App\Models\Oferta;
 use App\Models\Usuario;
 use App\Repositories\CanvasRepository;
 use Exception;
@@ -107,6 +109,48 @@ class CanvasService
         if(!$usuarioCanvas instanceof Exception) {
             if(isset($usuarioCanvas[0]->id)) {
                 return $usuarioCanvas[0];
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Monta e retorna URL do curso no Canvas
+     *
+     * @param Oferta $oferta
+     * @param Ava $ava
+     * @return mixed
+     */
+    public function retornaUrlCursoCanvas(Oferta $oferta, Ava $ava)
+    {
+        try {
+            $this->repository->setAvaCanvas($ava->id_ava);
+            $cursoCanvas = $this->verificaErro($this->buscaCursoCanvasPorIdCurso($oferta->id_curso));
+            $url = null;
+            if($cursoCanvas) {
+                $url = $ava->tx_url . '/courses/' . $cursoCanvas->id;
+            }
+
+            return $url;
+        } catch(Exception $exception) {
+            Log::error('Erro ao buscar curso no Canvas: ' . $exception->getMessage());
+            return new Exception('Erro ao buscar curso no Canvas.');
+        }
+    }
+
+    /**
+     * BUsca curso no Canvas atraves do id_curso
+     *
+     * @param int $idCurso
+     * @return mixed
+     */
+    protected function buscaCursoCanvasPorIdCurso($idCurso)
+    {
+        $curso = $this->verificaErro($this->repository->getCursoCanvas($idCurso . '-EVG'));
+        if(!$curso instanceof Exception) {
+            if(isset($curso[0]->id)) {
+                return $curso[0];
             }
         }
 
