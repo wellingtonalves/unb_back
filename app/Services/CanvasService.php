@@ -7,6 +7,7 @@ use App\Models\Oferta;
 use App\Models\Usuario;
 use App\Repositories\CanvasRepository;
 use Exception;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Log;
 
 class CanvasService
@@ -27,11 +28,12 @@ class CanvasService
     }
 
     /**
-     * 
+     *
      *
      * @param string $url
      * @param string $token
      * @return mixed
+     * @throws GuzzleException
      */
     public function buscaInfoSiteCanvas($url, $token)
     {
@@ -47,9 +49,10 @@ class CanvasService
     }
 
     /**
-     * Registra log com erro caso a API retorne exception ou nada (podemos add mais verificacoes de erro aqui) 
-     * 
+     * Registra log com erro caso a API retorne exception ou nada (podemos add mais verificacoes de erro aqui)
+     *
      * @param json|false
+     * @return Exception
      */
     protected function verificaErro($response)
     {
@@ -66,6 +69,7 @@ class CanvasService
      * @param Usuario $usuario
      * @param int $idAva
      * @return mixed
+     * @throws GuzzleException
      */
     public function atualizaUsuarioCanvas(Usuario $usuario, $idAva)
     {
@@ -102,6 +106,7 @@ class CanvasService
      *
      * @param int $idUsuario
      * @return mixed
+     * @throws GuzzleException
      */
     protected function buscaUsuarioCanvasPorIdUsuario($idUsuario)
     {
@@ -140,10 +145,11 @@ class CanvasService
     }
 
     /**
-     * BUsca curso no Canvas atraves do id_curso
+     * Busca curso no Canvas atraves do id_curso
      *
      * @param int $idCurso
      * @return mixed
+     * @throws GuzzleException
      */
     protected function buscaCursoCanvasPorIdCurso($idCurso)
     {

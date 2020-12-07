@@ -103,12 +103,9 @@ class Oferta extends AbstractModel
     {
         return $this->belongsTo(Curso::class, 'id_curso', 'id_curso');
     }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+
     public function ava(): BelongsTo
     {
-        return $this->belongsTo(Ava::class, 'id_ava');
+        return $this->belongsTo(Ava::class, 'id_ava', 'id_ava');
     }
 }

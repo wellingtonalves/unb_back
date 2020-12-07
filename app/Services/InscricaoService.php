@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\Ava;
 use App\Models\Oferta;
 use App\Repositories\InscricaoRepository;
 use Illuminate\Http\Response;
@@ -34,6 +33,8 @@ class InscricaoService extends AbstractService
     /**
      * CursoService constructor.
      * @param InscricaoRepository $repository
+     * @param MoodleService $moodleService
+     * @param CanvasService $canvasService
      */
     public function __construct(InscricaoRepository $repository, MoodleService $moodleService, CanvasService $canvasService)
     {
@@ -63,10 +64,10 @@ class InscricaoService extends AbstractService
             });
 
             $inscricoes = request()->pagination == 'false' ? $data->all() : $data->paginate($perPage);
-            
-            for($i=0;$i<count($inscricoes);$i++) {
-                $inscricoes[$i]->tx_url_ava = $this->retornaUrlCursoAva($inscricoes[$i]->oferta);
-            }
+
+            $inscricoes->map(function ($item) {
+               $item['tx_url_ava'] = $this->retornaUrlCursoAva($item->oferta);
+            });
 
             return Response::custom('success_operation', $inscricoes);
         } catch (Exception $exception) {
