@@ -6,6 +6,7 @@ use App\Http\Controllers\AbstractController;
 use App\Http\Requests\ProgramaRequest;
 use App\Models\Programa;
 use App\Services\ProgramaService;
+use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 
@@ -30,6 +31,24 @@ class ProgramaController extends AbstractController
     {
         $this->service = $service;
         $this->model = $model;
+    }
+
+    /**
+     * @return JsonResponse|mixed
+     */
+    public function index()
+    {
+        return $this->service->all();
+    }
+
+    /**
+     * @param $id
+     * @return JsonResponse|mixed
+     * @throws Exception
+     */
+    public function show($id)
+    {
+        return $this->service->find($id);
     }
 
     /**
