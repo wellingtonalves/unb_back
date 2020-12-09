@@ -51,7 +51,7 @@ class Oferta extends AbstractModel
         'tp_origem_oferta',
     ];
 
-    protected $appends = ['total_inscricoes'];
+    protected $appends = ['total_inscricoes', 'dt_termino_oferta_formatada'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -105,5 +105,21 @@ class Oferta extends AbstractModel
     public function ava(): BelongsTo
     {
         return $this->belongsTo(Ava::class, 'id_ava');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function curso(): BelongsTo
+    {
+        return $this->belongsTo(Curso::class, 'id_curso');
+    }
+
+    /**
+     * @return string
+     */
+    public function getDtTerminoOfertaFormatadaAttribute()
+    {
+        return formataData($this->attributes['dt_termino_oferta']);
     }
 }

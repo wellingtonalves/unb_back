@@ -101,6 +101,10 @@ class PermissaoSeeder extends Seeder
             ['tx_nome_permissao' => 'VALOR_EXCLUSIVIDADE_DETALHAR'],
             ['tx_nome_permissao' => 'VALOR_EXCLUSIVIDADE_INCLUIR'],
             ['tx_nome_permissao' => 'VALOR_EXCLUSIVIDADE_EDITAR'],
+            ['tx_nome_permissao' => 'CERTIFICADO_LISTAR'],
+            ['tx_nome_permissao' => 'CERTIFICADO_DETALHAR'],
+            ['tx_nome_permissao' => 'CERTIFICADO_INCLUIR'],
+            ['tx_nome_permissao' => 'CERTIFICADO_EDITAR'],
 
             ['tx_nome_permissao' => 'VW_VALIDACAO_CERTIFICADO_DETALHAR'],
             ['tx_nome_permissao' => 'VW_CURSOS_REALIZADOS_LISTAR'],
@@ -109,7 +113,7 @@ class PermissaoSeeder extends Seeder
         ];
 
         foreach ($permissao as $value) {
-            Permissao::firstOrCreate(['tx_nome_permissao' => $value]);
+            Permissao::firstOrCreate($value);
         }
     }
 }
