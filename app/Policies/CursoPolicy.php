@@ -8,22 +8,6 @@ class CursoPolicy extends AbstractPolicy
 {
 
     /**
-     * @return bool
-     */
-    public function index()
-    {
-        return true;
-    }
-
-    /**
-     * @return bool
-     */
-    public function show()
-    {
-        return true;
-    }
-
-    /**
      * @param Usuario $usuario
      * @return bool
      */

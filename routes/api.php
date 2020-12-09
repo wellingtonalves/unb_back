@@ -44,7 +44,8 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
             Route::resource('criterio-programa', 'CriterioProgramaController', $optionsReadOnly);
         });
 
-        Route::resource('curso', 'CursoController', ['except' => $excepts]);
+        Route::resource('curso', 'CursoController', ['only' => ['index', 'show']])->withoutMiddleware('auth:api');
+        Route::resource('curso', 'CursoController', ['only' => ['store', 'update', 'delete']]);
         Route::resource('tematica-curso', 'TematicaCursoController', ['except' => $excepts]);
         Route::resource('ava', 'AvaController', ['except' => $excepts]);
         Route::resource('orgao', 'OrgaoController', ['except' => $excepts]);
@@ -56,6 +57,8 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
         Route::resource('ofertas', 'OfertaController', ['except' => $excepts]);
         Route::resource('parceiros', 'ParceiroController', ['except' => $excepts]);
         Route::resource('programas', 'ProgramaController', ['except' => $excepts]);
+        Route::resource('programas', 'ProgramaController', ['only' => ['index', 'show']])->withoutMiddleware('auth:api');
+        Route::resource('programas', 'ProgramaController', ['only' => ['store', 'update', 'delete']]);
         Route::resource('exclusividade-oferta', 'ExclusividadeOfertaController', ['except' => $excepts]);
         Route::resource('valor-exclusividade-oferta', 'ValorExclusividadeOfertaController', ['except' => $excepts]);
         Route::resource('inscricao', 'InscricaoController', ['except' => $excepts]);
