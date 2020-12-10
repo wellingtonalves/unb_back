@@ -156,4 +156,19 @@ abstract class AbstractRepository extends BaseRepository
         $this->model = $this->model->where($column, $condition, $val);
         return $this;
     }
+
+    /**
+     * Find data by WHERE IN
+     *
+     * @param $column
+     * @param $array
+     * @return mixed
+     */
+    public function whereIn($column, $array)
+    {
+        $this->applyCriteria();
+        $this->applyScope();
+        $this->model = $this->model->whereIn($column, $array);
+        return $this;
+    }
 }

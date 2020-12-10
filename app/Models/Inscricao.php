@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Oferta;
 use App\Models\Pessoa;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Inscricao extends AbstractModel
 {
@@ -38,5 +39,13 @@ class Inscricao extends AbstractModel
     public function pessoa(): BelongsTo
     {
         return $this->belongsTo(Pessoa::class, 'id_pessoa', 'id_pessoa');
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function certificado(): HasOne
+    {
+        return $this->hasOne(Certificado::class, 'id_certificado', 'id_inscricao');
     }
 }

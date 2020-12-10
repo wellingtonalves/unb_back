@@ -62,6 +62,7 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
         Route::resource('programas', 'ProgramaController', ['only' => ['store', 'update', 'delete']]);
         Route::resource('exclusividade-oferta', 'ExclusividadeOfertaController', ['except' => $excepts]);
         Route::resource('valor-exclusividade-oferta', 'ValorExclusividadeOfertaController', ['except' => $excepts]);
+        Route::resource('certificado', 'CertificadoController', ['only' => ['index', 'show', 'store'] ]);
     });
 
 });
