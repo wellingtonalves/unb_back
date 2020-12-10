@@ -47,6 +47,7 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
         Route::resource('curso', 'CursoController', ['only' => ['index', 'show']])->withoutMiddleware('auth:api');
         Route::resource('curso', 'CursoController', ['only' => ['store', 'update', 'delete']]);
         Route::resource('tematica-curso', 'TematicaCursoController', ['except' => $excepts]);
+        Route::get('catalogo-curso', 'TematicaCursoController@catalogoCurso')->withoutMiddleware('auth:api');
         Route::resource('ava', 'AvaController', ['except' => $excepts]);
         Route::resource('orgao', 'OrgaoController', ['except' => $excepts]);
         Route::resource('usuario', 'UsuarioController', ['except' => $excepts]);
@@ -63,7 +64,7 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
         Route::resource('valor-exclusividade-oferta', 'ValorExclusividadeOfertaController', ['except' => $excepts]);
         Route::resource('inscricao', 'InscricaoController', ['except' => $excepts]);
         Route::get('inscricao/cursos-aluno/{tipo}', 'InscricaoController@cursosAluno');
-
+        Route::resource('certificado', 'CertificadoController', ['only' => ['index', 'show', 'store'] ]);
     });
 
 });

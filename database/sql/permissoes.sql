@@ -77,6 +77,10 @@ INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('IN
 INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('INSCRICAO_EXCLUIR', current_date, current_date);
 INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('INSCRICAO_CURSOS_ALUNO', current_date, current_date);
 
+INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('CERTIFICADO_LISTAR', current_date, current_date);
+INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('CERTIFICADO_DETALHAR', current_date, current_date);
+INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('CERTIFICADO_INCLUIR', current_date, current_date);
+
 -- DOMAIN
 INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('SITUACAO_USUARIO_LISTAR', current_date, current_date);
 INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('SITUACAO_USUARIO_DETALHAR', current_date, current_date);
