@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\AbstractController;
-use App\Http\Requests\CertificadoRequest;
 use App\Models\Certificado;
 use App\Services\CertificadoService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class CertificadoController extends AbstractController
 {
@@ -33,23 +33,12 @@ class CertificadoController extends AbstractController
     }
 
     /**
-     * @param CertificadoRequest $request
+     * @param Request $request
      * @return JsonResponse
      * @throws AuthorizationException
      */
-    public function store(CertificadoRequest $request)
+    public function store(Request $request)
     {
         return parent::save($request);
-    }
-
-    /**
-     * @param CertificadoRequest $request
-     * @param $id
-     * @return JsonResponse
-     * @throws AuthorizationException
-     */
-    public function update(CertificadoRequest $request, $id)
-    {
-        return parent::updateAs($request, $id);
     }
 }
