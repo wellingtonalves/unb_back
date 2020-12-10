@@ -110,14 +110,6 @@ class Oferta extends AbstractModel
     }
 
     /**
-     * @return BelongsTo
-     */
-    public function curso(): BelongsTo
-    {
-        return $this->belongsTo(Curso::class, 'id_curso');
-    }
-
-    /**
      * @return string
      */
     public function getDtTerminoOfertaFormatadaAttribute()
