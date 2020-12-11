@@ -70,6 +70,13 @@ INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('VA
 INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('VALOR_EXCLUSIVIDADE_EDITAR', current_date, current_date);
 INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('VALOR_EXCLUSIVIDADE_EXCLUIR', current_date, current_date);
 
+INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('INSCRICAO_LISTAR', current_date, current_date);
+INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('INSCRICAO_DETALHAR', current_date, current_date);
+INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('INSCRICAO_INCLUIR', current_date, current_date);
+INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('INSCRICAO_EDITAR', current_date, current_date);
+INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('INSCRICAO_EXCLUIR', current_date, current_date);
+INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('INSCRICAO_CURSOS_ALUNO', current_date, current_date);
+
 INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('CERTIFICADO_LISTAR', current_date, current_date);
 INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('CERTIFICADO_DETALHAR', current_date, current_date);
 INSERT INTO tb_permissao (tx_nome_permissao, created_at, updated_at) VALUES ('CERTIFICADO_INCLUIR', current_date, current_date);

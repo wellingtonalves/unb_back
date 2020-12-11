@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Log;
 
 class MoodleRepository
@@ -30,7 +31,7 @@ class MoodleRepository
     public function setAvaMoodle($idAva = null, $url = null, $token = null)
     {
         if ($idAva) {
-            $ava = $this->avaRepository->findWhere(['id_ava' => $idAva, ['tp_ava', '=', 'MOODLE'], 
+            $ava = $this->avaRepository->findWhere(['id_ava' => $idAva, ['tp_ava', '=', 'MOODLE'],
             ['tp_situacao_ava', '=', 'A'], ['tp_operacional', '=', 'S']]);
 
             if ($ava->isNotEmpty()) {
@@ -42,7 +43,7 @@ class MoodleRepository
             $this->url = $url;
             $this->token = $token;
 
-            $ava = $this->avaRepository->findWhere([['tx_url', '=', $url], ['tx_token', '=', $token], 
+            $ava = $this->avaRepository->findWhere([['tx_url', '=', $url], ['tx_token', '=', $token],
                 ['tp_ava', '=', 'MOODLE'], ['tp_situacao_ava', '=', 'A'], ['tp_operacional', '=', 'S']]);
             $this->idAva = $ava->isNotEmpty() ? $ava->first()->getKey() : null;
         }
@@ -56,6 +57,7 @@ class MoodleRepository
      * @param array $parametros
      * @param boolean $original Se verdade, nao trata o retorno. Se falso, utiliza json_decode() para retornar
      * @return GuzzleHttp\Client|false
+     * @throws GuzzleException
      */
     protected function servicoMoodle($funcao, $parametros, $original = false)
     {
@@ -84,7 +86,8 @@ class MoodleRepository
     /**
      * Informacoes do AVA
      *
-     * @return json|false
+     * @return mixed
+     * @throws GuzzleException
      */
     public function getSiteInfo()
     {
@@ -96,7 +99,8 @@ class MoodleRepository
      *
      * @param string $keyParam
      * @param string $valueParam
-     * @return json|false
+     * @return mixed
+     * @throws GuzzleException
      */
     public function getUsuarioMoodle($keyParam, $valueParam)
     {
@@ -111,10 +115,26 @@ class MoodleRepository
      * Atualiza o usuario no Moodle
      *
      * @param array $parametros
-     * @return json|false
+     * @return mixed
+     * @throws GuzzleException
      */
     public function setUsuarioMoodle($parametros)
     {
         $this->servicoMoodle('core_user_update_users', $parametros);
+    }
+
+    /**
+     * Consulta curso no Moodle pelo idnumber atraves do id_oferta
+     *
+     * @param string $keyParam
+     * @param string $valueParam
+     * @return mixed
+     * @throws GuzzleException
+     */
+    public function getCursoMoodle($keyParam, $valueParam)
+    {
+        $parametros['field'] = $keyParam;
+        $parametros['value'] = $valueParam;
+        return $this->servicoMoodle('core_course_get_courses_by_field', $parametros);
     }
 }

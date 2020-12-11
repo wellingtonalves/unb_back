@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Curso extends AbstractModel
 {
@@ -28,5 +29,10 @@ class Curso extends AbstractModel
     public function tematicaCurso(): BelongsTo
     {
         return $this->belongsTo(TematicaCurso::class, 'id_tematica_curso', 'id_tematica_curso');
+    }
+
+    public function oferta(): HasMany
+    {
+        return $this->hasMany(Oferta::class, 'id_curso', 'id_curso');
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\Ava;
+use App\Models\Oferta;
 use App\Models\Usuario;
 use App\Repositories\MoodleRepository;
 use Exception;
@@ -142,5 +144,47 @@ class MoodleService
         }
 
         return $nome;
+    }
+
+    /**
+     * Monta e retorna a URL do curso no Moodle
+     *
+     * @param Oferta $oferta
+     * @param Ava $ava
+     * @return mixed
+     */
+    public function retornaUrlCursoMoodle(Oferta $oferta, Ava $ava)
+    {
+        try {
+            $this->repository->setAvaMoodle($ava->id_ava);
+            $cursoMoodle = $this->verificaErro($this->buscaCursoMoodlePorIdnumber($oferta->id_oferta));
+            $url = null;
+            if($cursoMoodle) {
+                $url = $ava->tx_url . '/course/view.php?id=' . $cursoMoodle->id;
+            }
+
+            return $url;
+        } catch(Exception $exception) {
+            Log::error('Erro ao buscar curso no Moodle: ' . $exception->getMessage());
+            return new Exception('Erro ao buscar curso no Moodle.');
+        }
+    }
+
+    /**
+     * Busca Curso no Moodle com o id_oferta no idnumber
+     *
+     * @param int $idOferta
+     * @return mixed
+     */
+    protected function buscaCursoMoodlePorIdnumber($idOferta)
+    {
+        $cursoMoodle = $this->verificaErro($this->repository->getCursoMoodle('idnumber', $idOferta . '-EVG'));
+        if(!$cursoMoodle instanceof Exception) {
+            if(isset($cursoMoodle->courses[0]->id)) {
+                return $cursoMoodle->courses[0];
+            }
+        }
+
+        return false;
     }
 }
