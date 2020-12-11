@@ -6,6 +6,7 @@ use App\Models\Oferta;
 use App\Repositories\InscricaoRepository;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
+use Prettus\Repository\Exceptions\RepositoryException;
 
 class InscricaoService extends AbstractService
 {
@@ -46,11 +47,13 @@ class InscricaoService extends AbstractService
 
     /**
      * @return mixed
+     * @throws RepositoryException
      */
     public function retornaCursosEmAndamento()
     {
         try {
 
+            $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
             $perPage = request()->has('per_page') ? request()->per_page : null;
             $data = $this->repository->with($this->repository->relationships)->scopeQuery(function ($query) {
                 return $query->where([
@@ -78,11 +81,13 @@ class InscricaoService extends AbstractService
 
     /**
      * @return mixed
+     * @throws RepositoryException
      */
     public function retornaCursosFinalizado()
     {
         try {
 
+            $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
             $perPage = request()->has('per_page') ? request()->per_page : null;
             $data = $this->repository->with($this->repository->relationships)->scopeQuery(function ($query) {
                 return $query->where([
@@ -101,11 +106,13 @@ class InscricaoService extends AbstractService
 
     /**
      * @return mixed
+     * @throws RepositoryException
      */
     public function retornaCursostrancado()
     {
         try {
 
+            $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
             $perPage = request()->has('per_page') ? request()->per_page : null;
             $data = $this->repository->with($this->repository->relationships)->scopeQuery(function ($query) {
                 return $query->where([

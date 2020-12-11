@@ -31,6 +31,7 @@ class InscricaoRepository extends AbstractRepository
         'tp_situacao_inscricao',
         'dt_fim_inscricao',
         'tp_ava',
+        'oferta.tx_nome_curso' => 'ilike'
     ];
 
     /**
