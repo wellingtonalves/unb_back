@@ -2,25 +2,24 @@
 
 namespace App\Repositories;
 
-use App\Models\Certificado;
+use App\Models\ProgramaCurso;
 
-class CertificadoRepository extends AbstractRepository
+class ProgramaCursoRepository extends AbstractRepository
 {
     /**
      * Relationships
      *
      * @return string
      */
-    public $relationships = [
-        'inscricao.oferta.curso'
-    ];
+    public $relationships = [];
 
     /**
      * FieldSearchable
      *
      * @return string
      */
-    protected $fieldSearchable = [];
+    protected $fieldSearchable = [
+    ];
 
     /**
      * Specify Model class name
@@ -29,6 +28,6 @@ class CertificadoRepository extends AbstractRepository
      */
     public function model()
     {
-        return Certificado::class;
+        return ProgramaCurso::class;
     }
 }

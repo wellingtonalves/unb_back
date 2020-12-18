@@ -40,6 +40,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\Domain\CriterioPrograma' => 'App\Policies\Domain\CriterioProgramaPolicy',
         'App\Models\Inscricao' => 'App\Policies\InscricaoPolicy',
         'App\Models\Certificado' => 'App\Policies\CertificadoPolicy',
+        'App\Models\CertificadoPrograma' => 'App\Policies\CertificadoProgramaPolicy',
     ];
 
     /**

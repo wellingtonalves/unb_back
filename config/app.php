@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        \App\Providers\CollectionPaginateProvider::class,
         /*
          * Application Service Providers...
          */
