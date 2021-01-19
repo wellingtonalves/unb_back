@@ -171,4 +171,18 @@ abstract class AbstractRepository extends BaseRepository
         $this->model = $this->model->whereIn($column, $array);
         return $this;
     }
+
+    /**
+     * Group By
+     *
+     * @param $array
+     * @return mixed
+     */
+    public function groupBy($array)
+    {
+        $this->applyCriteria();
+        $this->applyScope();
+        $this->model = $this->model->groupBy($array);
+        return $this;
+    }
 }
