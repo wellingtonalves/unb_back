@@ -191,13 +191,14 @@ class InscricaoService extends AbstractService
         return $this->gerarPdfInscricao($this->repository->with($this->repository->relationships)->find($id));
     }
 
+    /**
+     * @param $data
+     * @return mixed
+     */
     private function gerarPdfInscricao($data)
     {
         $data = [
             'tx_nome_pessoa' => $data->pessoa->tx_nome_pessoa,
-//            'nr_cpf' => $data->nr_cpf,
-//            'dt_nascimento' => formataData($data->dt_nascimento),
-//            'sg_pais_nacionalidade' => $data->sg_pais_nacionalidade,
             'tx_nome_curso' => $data->oferta->curso->tx_nome_curso,
             'tx_nome_oferta' => $data->oferta->tx_nome_oferta,
             'dt_inscricao' => formataData($data->dt_inscricao),
@@ -207,8 +208,6 @@ class InscricaoService extends AbstractService
             'qt_duracao_dias' => $data->oferta->qt_duracao_dias,
             'tutoria' => $data->oferta->tp_com_tutoria == 'S' ? 'COM TUTORIAL' : 'SEM TUTORIA',
             'nr_codigo_validador' => $data->nr_codigo_validador,
-//            'qt_nota_final' => $data->inscricao->qt_nota_final,
-//            'tx_conteudo_programatico' => $data->inscricao->oferta->curso->tx_conteudo_programatico,
         ];
 
         $certificado = \PDF::loadView('inscricao.modelo01', ['inscricao' => $data])->setPaper('a4', 'portrait');
