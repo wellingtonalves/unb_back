@@ -64,4 +64,20 @@ class InscricaoController extends AbstractController
     {
         return $this->service->validar($nrCodigoValidador);
     }
+    /**
+     * @return mixed
+     */
+    public function comprovantesInscricao()
+    {
+        return $this->service->comprovantesInscricao();
+    }
+
+    /**
+     * @param $id
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
+     */
+    public function gerarComprovanteInscricao($id)
+    {
+        return $this->service->gerarComprovanteInscricao($id);
+    }
 }

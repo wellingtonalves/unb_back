@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Criteria\FiltraPorUsuarioCriteria;
 use App\Exceptions\ValidarInscricaoException;
 use App\Models\Oferta;
 use App\Repositories\InscricaoRepository;
@@ -144,6 +145,24 @@ class InscricaoService extends AbstractService
     }
 
     /**
+     * @return mixed
+     */
+    public function comprovantesInscricao()
+    {
+        try {
+            $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+            $this->repository->pushCriteria(app(FiltraPorUsuarioCriteria::class));
+
+            $data = $this->repository->with($this->repository->relationships);
+
+            return Response::custom('success_operation', $data->all());
+        } catch (\Exception $exception) {
+            Log::info($exception->getMessage());
+            return Response::custom('error_operation', $exception);
+        }
+    }
+
+    /**
      * @param $nrCodigoValidador
      * @return InscricaoRepository|mixed
      */
@@ -160,5 +179,38 @@ class InscricaoService extends AbstractService
             Log::info($exception->getMessage());
             return Response::custom(null, $exception);
         }
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     * @throws RepositoryException
+     */
+    public function gerarComprovanteInscricao($id)
+    {
+        return $this->gerarPdfInscricao($this->repository->with($this->repository->relationships)->find($id));
+    }
+
+    /**
+     * @param $data
+     * @return mixed
+     */
+    private function gerarPdfInscricao($data)
+    {
+        $data = [
+            'tx_nome_pessoa' => $data->pessoa->tx_nome_pessoa,
+            'tx_nome_curso' => $data->oferta->curso->tx_nome_curso,
+            'tx_nome_oferta' => $data->oferta->tx_nome_oferta,
+            'dt_inscricao' => formataData($data->dt_inscricao),
+            'dt_termino_oferta' => formataData($data->oferta->dt_termino_oferta),
+            'qt_carga_horaria_oferta' => $data->oferta->qt_carga_horaria_oferta,
+            'qt_nota_minima_aprovacao' => $data->oferta->qt_nota_minima_aprovacao,
+            'qt_duracao_dias' => $data->oferta->qt_duracao_dias,
+            'tutoria' => $data->oferta->tp_com_tutoria == 'S' ? 'COM TUTORIAL' : 'SEM TUTORIA',
+            'nr_codigo_validador' => $data->nr_codigo_validador,
+        ];
+
+        $certificado = \PDF::loadView('inscricao.modelo01', ['inscricao' => $data])->setPaper('a4', 'portrait');
+        return $certificado->stream('inscricao.pdf');
     }
 }
