@@ -66,6 +66,8 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
         Route::get('inscricao/cursos-aluno/{tipo}', 'InscricaoController@cursosAluno');
         Route::resource('certificado', 'CertificadoController', ['only' => ['index', 'show', 'store'] ]);
         Route::resource('certificado-programa', 'CertificadoProgramaController', ['only' => ['index', 'show', 'store'] ]);
+        Route::get('inscricao/validar/{nr_codigo_validador}', 'InscricaoController@validar')->withoutMiddleware('auth:api');
+        Route::get('certificado/validar/{nr_codigo_validador}', 'CertificadoController@validar')->withoutMiddleware('auth:api');
     });
 
 });

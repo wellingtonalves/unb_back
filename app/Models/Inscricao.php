@@ -70,4 +70,9 @@ class Inscricao extends AbstractModel
     {
         return $this->hasOne(Certificado::class, 'id_certificado', 'id_inscricao');
     }
+
+    public function avaliacaoInscrito()
+    {
+        return $this->hasMany(AvaliacaoInscrito::class, 'id_inscricao');
+    }
 }

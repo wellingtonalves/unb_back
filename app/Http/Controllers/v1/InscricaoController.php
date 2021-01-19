@@ -6,6 +6,7 @@ use App\Exceptions\InscricaoAlunoException;
 use App\Http\Controllers\AbstractController;
 use App\Models\Inscricao;
 use App\Services\InscricaoService;
+use Illuminate\Http\Request;
 
 class InscricaoController extends AbstractController
 {
@@ -30,6 +31,12 @@ class InscricaoController extends AbstractController
         $this->model = $model;
     }
 
+    /**
+     * @param $tipoCurso
+     * @return mixed
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Prettus\Repository\Exceptions\RepositoryException
+     */
     public function cursosAluno($tipoCurso)
     {
         $this->authorize('cursosAluno', $this->model);
@@ -49,4 +56,12 @@ class InscricaoController extends AbstractController
         new InscricaoAlunoException();
     }
 
+    /**
+     * @param $nrCodigoValidador
+     * @return mixed
+     */
+    public function validar($nrCodigoValidador)
+    {
+        return $this->service->validar($nrCodigoValidador);
+    }
 }

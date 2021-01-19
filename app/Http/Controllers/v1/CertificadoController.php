@@ -41,4 +41,13 @@ class CertificadoController extends AbstractController
     {
         return parent::save($request);
     }
+
+    /**
+     * @param $nrCodigoValidador
+     * @return mixed
+     */
+    public function validar($nrCodigoValidador)
+    {
+        return $this->service->validar($nrCodigoValidador);
+    }
 }

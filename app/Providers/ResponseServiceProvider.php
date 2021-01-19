@@ -29,7 +29,7 @@ class ResponseServiceProvider extends ServiceProvider
             $data = [];
 
             if ($response instanceof \Exception) {
-                $data['message'] = __('messages.' . $message);
+                $data['message'] = $message ? __('messages.' . $message) : $response->getMessage();
                 $data['status'] = Response::HTTP_INTERNAL_SERVER_ERROR;
                 $data['messageType'] = __('messages.message_type.erro');
 
