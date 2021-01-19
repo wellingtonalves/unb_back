@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Criteria\CertificadoCriteria;
+use App\Exceptions\ValidarCertificadoException;
 use App\Repositories\CertificadoRepository;
 use App\Repositories\InscricaoRepository;
 use Illuminate\Http\Request;
@@ -134,5 +135,25 @@ class CertificadoService extends AbstractService
 
         $certificado = \PDF::loadView('certificado.modelo01', ['certificado' => $data])->setPaper('a4', 'landscape');
         return $certificado->stream('certificado.pdf');
+    }
+
+    /**
+     * @param $nrCodigoValidador
+     * @return InscricaoRepository|mixed
+     */
+    public function validar($nrCodigoValidador)
+    {
+        try {
+            $data = $this->repository->with(['inscricao.oferta.curso', 'inscricao.avaliacaoInscrito.avaliacao'])
+                ->where('nr_codigo_validador', '=', $nrCodigoValidador)
+                ->first();
+            if (!$data) {
+                throw new ValidarCertificadoException();
+            }
+            return Response::custom('success_operation', $data);
+        } catch (\Exception $exception) {
+            Log::info($exception->getMessage());
+            return Response::custom(null, $exception);
+        }
     }
 }

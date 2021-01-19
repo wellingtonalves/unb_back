@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\ValidarInscricaoException;
 use App\Models\Oferta;
 use App\Repositories\InscricaoRepository;
 use Illuminate\Http\Response;
@@ -69,7 +70,7 @@ class InscricaoService extends AbstractService
             $inscricoes = request()->pagination == 'false' ? $data->all() : $data->paginate($perPage);
 
             $inscricoes->map(function ($item) {
-               $item['tx_url_ava'] = $this->retornaUrlCursoAva($item->oferta);
+                $item['tx_url_ava'] = $this->retornaUrlCursoAva($item->oferta);
             });
 
             return Response::custom('success_operation', $inscricoes);
@@ -137,8 +138,27 @@ class InscricaoService extends AbstractService
     protected function retornaUrlCursoAva(Oferta $oferta)
     {
         $typeAva = strtolower(trim($oferta->ava->tp_ava));
-        $service =  $typeAva . 'Service';
+        $service = $typeAva . 'Service';
         $metodoAtualizaUsuario = 'retornaUrlCurso' . ucfirst($typeAva);
         return $this->$service->$metodoAtualizaUsuario($oferta, $oferta->ava);
+    }
+
+    /**
+     * @param $nrCodigoValidador
+     * @return InscricaoRepository|mixed
+     */
+    public function validar($nrCodigoValidador)
+    {
+        try {
+            $data = $this->repository->with(['pessoa', 'oferta.curso'])
+                ->where('nr_codigo_validador', '=', $nrCodigoValidador)->first();
+            if (!$data) {
+                throw new ValidarInscricaoException();
+            }
+            return Response::custom('success_operation', $data);
+        } catch (\Exception $exception) {
+            Log::info($exception->getMessage());
+            return Response::custom(null, $exception);
+        }
     }
 }

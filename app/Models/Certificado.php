@@ -22,11 +22,21 @@ class Certificado extends AbstractModel
         'nr_cpf',
     ];
 
+    protected $appends = ['dt_emissao_certificado_formatada'];
+
     /**
      * @return BelongsTo
      */
     public function inscricao(): BelongsTo
     {
         return $this->belongsTo(Inscricao::class, 'id_certificado', 'id_inscricao');
+    }
+
+    /**
+     * @return false|string|null
+     */
+    public function getDtEmissaoCertificadoFormatadaAttribute()
+    {
+        return formataData($this->attributes['dt_emissao_certificado']);
     }
 }
