@@ -6,7 +6,8 @@ use App\Exceptions\InscricaoAlunoException;
 use App\Http\Controllers\AbstractController;
 use App\Models\Inscricao;
 use App\Services\InscricaoService;
-use Illuminate\Http\Request;
+use Illuminate\Auth\Access\AuthorizationException;
+use Prettus\Repository\Exceptions\RepositoryException;
 
 class InscricaoController extends AbstractController
 {
@@ -34,8 +35,8 @@ class InscricaoController extends AbstractController
     /**
      * @param $tipoCurso
      * @return mixed
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Prettus\Repository\Exceptions\RepositoryException
+     * @throws AuthorizationException
+     * @throws RepositoryException
      */
     public function cursosAluno($tipoCurso)
     {
@@ -74,10 +75,31 @@ class InscricaoController extends AbstractController
 
     /**
      * @param $id
-     * @throws \Prettus\Repository\Exceptions\RepositoryException
+     * @throws RepositoryException
      */
     public function gerarComprovanteInscricao($id)
     {
         return $this->service->gerarComprovanteInscricao($id);
+    }
+
+    /**
+     * @param $tipo
+     * @return mixed
+     * @throws RepositoryException
+     */
+    public function cursosTop($tipo)
+    {
+
+        if ($tipo === 'dia') {
+            return $this->service->cursosMaisAcessadosNoDia();
+        }
+
+        if ($tipo === 'semana') {
+
+        }
+
+        if ($tipo === 'novos') {
+
+        }
     }
 }

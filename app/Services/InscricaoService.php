@@ -4,9 +4,11 @@ namespace App\Services;
 
 use App\Criteria\FiltraPorUsuarioCriteria;
 use App\Exceptions\ValidarInscricaoException;
+use App\Models\Curso;
 use App\Models\Oferta;
 use App\Repositories\InscricaoRepository;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Prettus\Repository\Exceptions\RepositoryException;
 
@@ -212,5 +214,22 @@ class InscricaoService extends AbstractService
 
         $certificado = \PDF::loadView('inscricao.modelo01', ['inscricao' => $data])->setPaper('a4', 'portrait');
         return $certificado->stream('inscricao.pdf');
+    }
+
+    public function cursosMaisAcessadosNoDia()
+    {
+        try {
+
+            $data = DB::table('tb_inscricao')
+                ->selectRaw('tb_inscricao.id_oferta,  count(id_inscricao) as qtd_inscricao')
+                ->groupBy('tb_inscricao.id_oferta')
+                ->orderBy('qtd_inscricao', 'desc')
+                ->where('dt_inscricao', '>', today())->get();
+
+            return Response::custom('success_operation', $data);
+        } catch (Exception $exception) {
+            Log::info($exception->getMessage());
+            return Response::custom('error_operation', $exception);
+        }
     }
 }
