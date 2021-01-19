@@ -109,6 +109,7 @@ class PermissaoSeeder extends Seeder
             ['tx_nome_permissao' => 'CERTIFICADO_PROGRAMA_DETALHAR'],
             ['tx_nome_permissao' => 'CERTIFICADO_PROGRAMA_INCLUIR'],
             ['tx_nome_permissao' => 'CERTIFICADO_PROGRAMA_EDITAR'],
+            ['tx_nome_permissao' => 'ALUNO_INSCRICOES_LISTAR'],
 
             ['tx_nome_permissao' => 'VW_VALIDACAO_CERTIFICADO_DETALHAR'],
             ['tx_nome_permissao' => 'VW_CURSOS_REALIZADOS_LISTAR'],
