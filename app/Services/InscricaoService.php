@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\ValidarInscricaoException;
 use App\Criteria\FiltraPorUsuarioCriteria;
 use App\Exceptions\ValidarInscricaoException;
 use App\Models\Oferta;

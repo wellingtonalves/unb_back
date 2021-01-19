@@ -81,4 +81,12 @@ class InscricaoController extends AbstractController
     {
         return $this->service->gerarComprovanteInscricao($id);
     }
+    /**
+     * @param $nrCodigoValidador
+     * @return mixed
+     */
+    public function validar($nrCodigoValidador)
+    {
+        return $this->service->validar($nrCodigoValidador);
+    }
 }
