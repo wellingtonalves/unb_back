@@ -14,6 +14,7 @@ class InscricaoRepository extends AbstractRepository
     public $relationships = [
         'oferta',
         'oferta.curso',
+        'oferta.curso.tematicaCurso',
         'oferta.ava',
         'pessoa'
     ];

@@ -75,6 +75,7 @@ class InscricaoController extends AbstractController
 
     /**
      * @param $id
+     * @return mixed
      * @throws RepositoryException
      */
     public function gerarComprovanteInscricao($id)
@@ -85,21 +86,30 @@ class InscricaoController extends AbstractController
     /**
      * @param $tipo
      * @return mixed
-     * @throws RepositoryException
      */
-    public function cursosTop($tipo)
+    public function cursosMaisAcessados($tipo)
     {
 
         if ($tipo === 'dia') {
-            return $this->service->cursosMaisAcessadosNoDia();
+            return $this->service->cursosMaisAcessados(0);
         }
 
         if ($tipo === 'semana') {
-
+            return $this->service->cursosMaisAcessados(7);
         }
 
-        if ($tipo === 'novos') {
-
+        if ($tipo === 'mes') {
+            return $this->service->cursosMaisAcessados(30);
         }
+
+        new InscricaoAlunoException();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function cursosNovos()
+    {
+        return $this->service->cursosNovos();
     }
 }
