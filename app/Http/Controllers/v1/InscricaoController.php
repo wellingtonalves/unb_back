@@ -65,11 +65,14 @@ class InscricaoController extends AbstractController
     {
         return $this->service->validar($nrCodigoValidador);
     }
+
     /**
      * @return mixed
+     * @throws AuthorizationException
      */
     public function comprovantesInscricao()
     {
+        $this->authorize('inscricoesAluno', $this->model);
         return $this->service->comprovantesInscricao();
     }
 
@@ -77,9 +80,11 @@ class InscricaoController extends AbstractController
      * @param $id
      * @return mixed
      * @throws RepositoryException
+     * @throws AuthorizationException
      */
     public function gerarComprovanteInscricao($id)
     {
+        $this->authorize('inscricoesAluno', $this->model);
         return $this->service->gerarComprovanteInscricao($id);
     }
 
