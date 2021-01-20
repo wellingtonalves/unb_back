@@ -60,4 +60,13 @@ class InscricaoPolicy extends AbstractPolicy
     {
         return self::check('INSCRICAO_CURSOS_ALUNO', $usuario);
     }
+
+    /**
+     * @param Usuario $usuario
+     * @return bool
+     */
+    public function inscricoesAluno(Usuario $usuario)
+    {
+        return self::check('ALUNO_INSCRICOES_LISTAR', $usuario);
+    }
 }
