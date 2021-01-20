@@ -4,9 +4,11 @@ namespace App\Services;
 
 use App\Criteria\FiltraPorUsuarioCriteria;
 use App\Exceptions\ValidarInscricaoException;
+use App\Models\Curso;
 use App\Models\Oferta;
 use App\Repositories\InscricaoRepository;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Prettus\Repository\Exceptions\RepositoryException;
 
@@ -212,5 +214,54 @@ class InscricaoService extends AbstractService
 
         $certificado = \PDF::loadView('inscricao.modelo01', ['inscricao' => $data])->setPaper('a4', 'portrait');
         return $certificado->stream('inscricao.pdf');
+    }
+
+    /**
+     * @param $days
+     * @return mixed
+     */
+    public function cursosMaisAcessados($days)
+    {
+        try {
+
+            $data = DB::table('tb_inscricao')
+                ->select('tb_curso.tx_nome_curso', 'tb_curso.tx_url_imagem_curso', 'tb_curso.tp_origem_curso',
+                    'tb_curso.qt_carga_horaria_minima', 'tb_tematica_curso.tx_nome_tematica_curso')
+                ->selectRaw('tb_inscricao.id_oferta,  count(id_inscricao) as qtd_inscricao')
+                ->join('tb_oferta', 'tb_oferta.id_oferta', '=', 'tb_inscricao.id_oferta')
+                ->join('tb_curso', 'tb_curso.id_curso', '=', 'tb_oferta.id_curso')
+                ->join('tb_tematica_curso', 'tb_tematica_curso.id_tematica_curso', '=', 'tb_curso.id_tematica_curso')
+                ->groupBy('tb_inscricao.id_oferta', 'tb_curso.tx_nome_curso', 'tb_curso.tx_url_imagem_curso',
+                    'tb_curso.qt_carga_horaria_minima', 'tb_tematica_curso.tx_nome_tematica_curso', 'tb_curso.tp_origem_curso')
+                ->orderBy('qtd_inscricao', 'desc')
+                ->limit(5)
+                ->where('dt_inscricao', '>', today()->subDays($days))->get();
+
+
+            return Response::custom('success_operation', $data);
+        } catch (Exception $exception) {
+            Log::info($exception->getMessage());
+            return Response::custom('error_operation', $exception);
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function cursosNovos()
+    {
+        try {
+
+            $data = $this->repository->with($this->repository->relationships)
+                ->where('created_at', '!=', null)
+                ->orderBy('created_at', 'desc')
+                ->limit(5)
+                ->get();
+
+            return Response::custom('success_operation', $data);
+        } catch (Exception $exception) {
+            Log::info($exception->getMessage());
+            return Response::custom('error_operation', $exception);
+        }
     }
 }

@@ -6,7 +6,8 @@ use App\Exceptions\InscricaoAlunoException;
 use App\Http\Controllers\AbstractController;
 use App\Models\Inscricao;
 use App\Services\InscricaoService;
-use Illuminate\Http\Request;
+use Illuminate\Auth\Access\AuthorizationException;
+use Prettus\Repository\Exceptions\RepositoryException;
 
 class InscricaoController extends AbstractController
 {
@@ -34,8 +35,8 @@ class InscricaoController extends AbstractController
     /**
      * @param $tipoCurso
      * @return mixed
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Prettus\Repository\Exceptions\RepositoryException
+     * @throws AuthorizationException
+     * @throws RepositoryException
      */
     public function cursosAluno($tipoCurso)
     {
@@ -74,10 +75,41 @@ class InscricaoController extends AbstractController
 
     /**
      * @param $id
-     * @throws \Prettus\Repository\Exceptions\RepositoryException
+     * @return mixed
+     * @throws RepositoryException
      */
     public function gerarComprovanteInscricao($id)
     {
         return $this->service->gerarComprovanteInscricao($id);
+    }
+
+    /**
+     * @param $tipo
+     * @return mixed
+     */
+    public function cursosMaisAcessados($tipo)
+    {
+
+        if ($tipo === 'dia') {
+            return $this->service->cursosMaisAcessados(0);
+        }
+
+        if ($tipo === 'semana') {
+            return $this->service->cursosMaisAcessados(7);
+        }
+
+        if ($tipo === 'mes') {
+            return $this->service->cursosMaisAcessados(30);
+        }
+
+        new InscricaoAlunoException();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function cursosNovos()
+    {
+        return $this->service->cursosNovos();
     }
 }

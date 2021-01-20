@@ -64,6 +64,8 @@ Route::group(['prefix' => 'v1'], function () use ($excepts, $optionsReadOnly) {
         Route::resource('valor-exclusividade-oferta', 'ValorExclusividadeOfertaController', ['except' => $excepts]);
         Route::resource('inscricao', 'InscricaoController', ['except' => $excepts]);
         Route::get('inscricao/cursos-aluno/{tipo}', 'InscricaoController@cursosAluno');
+        Route::get('inscricao/cursos-mais-acessados/{tipo}', 'InscricaoController@cursosMaisAcessados')->withoutMiddleware('auth:api');
+        Route::get('inscricao/cursos/novos', 'InscricaoController@cursosNovos')->withoutMiddleware('auth:api');
         Route::get('comprovantes-inscricao', 'InscricaoController@comprovantesInscricao');
         Route::get('comprovantes-inscricao/{id}/gerar', 'InscricaoController@gerarComprovanteInscricao');
         Route::resource('certificado', 'CertificadoController', ['only' => ['index', 'show', 'store'] ]);
