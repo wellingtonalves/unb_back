@@ -96,7 +96,7 @@ class InscricaoController extends AbstractController
     {
 
         if ($tipo === 'dia') {
-            return $this->service->cursosMaisAcessados(0);
+            return $this->service->cursosMaisAcessados(1);
         }
 
         if ($tipo === 'semana') {
@@ -110,11 +110,4 @@ class InscricaoController extends AbstractController
         new InscricaoAlunoException();
     }
 
-    /**
-     * @return mixed
-     */
-    public function cursosNovos()
-    {
-        return $this->service->cursosNovos();
-    }
 }

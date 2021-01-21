@@ -32,7 +32,8 @@ class CursoRepository extends AbstractRepository
         'tx_url_video_curso',
         'bl_destaque_curso',
         'nr_ordem_curso',
-        'tp_origem_curso'
+        'tp_origem_curso',
+        'created_at'
     ];
 
     /**
