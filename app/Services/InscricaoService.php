@@ -234,7 +234,7 @@ class InscricaoService extends AbstractService
                 ->groupBy('tb_inscricao.id_oferta', 'tb_curso.tx_nome_curso', 'tb_curso.tx_url_imagem_curso',
                     'tb_curso.qt_carga_horaria_minima', 'tb_tematica_curso.tx_nome_tematica_curso', 'tb_curso.tp_origem_curso')
                 ->orderBy('qtd_inscricao', 'desc')
-                ->limit(5)
+                ->limit(8)
                 ->where('dt_inscricao', '>', today()->subDays($days))->get();
 
 
@@ -245,23 +245,4 @@ class InscricaoService extends AbstractService
         }
     }
 
-    /**
-     * @return mixed
-     */
-    public function cursosNovos()
-    {
-        try {
-
-            $data = $this->repository->with($this->repository->relationships)
-                ->where('created_at', '!=', null)
-                ->orderBy('created_at', 'desc')
-                ->limit(5)
-                ->get();
-
-            return Response::custom('success_operation', $data);
-        } catch (Exception $exception) {
-            Log::info($exception->getMessage());
-            return Response::custom('error_operation', $exception);
-        }
-    }
 }
