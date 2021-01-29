@@ -1,0 +1,227 @@
+/* CSS Document */
+
+/* base */
+*,
+body {
+    margin: 0;
+    padding: 0;
+}
+*,
+*:after,
+*:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body {
+    font-family: "Open Sans", sans-serif;
+}
+div.certificado p strong,
+div.info p strong {
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+/* main */
+div.certificado {
+    background-image: url('../img/certificados/bg-modelo-01.png');
+    background-repeat: no-repeat;
+    font-family: sans-serif;
+    height: 793px;
+    left: 0;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 2cm;
+    position: absolute;
+    top: 0;
+    width: 1122px;
+
+    page-break-after: always;
+}
+div.certificado h1 {
+    color: white;
+    font-size: 25px;
+    font-weight: 900;
+    font-family: "Open Sans", sans-serif;
+    padding-right: 7px;
+    padding-top: 4px;
+    text-align: justify;
+}
+div.certificado h2 {
+    color: #af1313;
+    display: inline-block;
+    margin: 10px 3px;
+}
+div.certificado h3 {
+    color: #0E3F59;
+    font-family: "Open Sans", sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    padding-top: 100px;
+    text-align: center;
+    text-transform: uppercase;
+}
+div.certificado h3 + p,
+div.certificado .declaracao {
+    font-size: 23px;
+    font-weight: 500;
+    margin: 10px 2cm 10px 10px;
+    text-align: center;
+}
+div.certificado h3 + p {
+    color: #0E3F59;
+    font-family: "Open Sans", sans-serif;
+    margin: 50px 4cm 10px;
+}
+div.certificado .caixaENAP {
+    background-color: #af1313;
+    display: inline-block;
+    height: 45px;
+    margin-top: 30px;
+    width: 120px;
+}
+div.certificado .assinatura {
+    color: #0E3F59;
+    margin-bottom: 0;
+    margin-top: 70px;
+    text-align: center;
+    width: 100%;
+}
+div.certificado .assinatura hr {
+    margin: -30px auto 0;
+    width: 500px;
+}
+div.certificado .assinatura p {
+    padding-top: -5px;
+    margin: -15px 0 0;
+}
+div.certificado .assinatura p + p {
+    margin-top: 0;
+    padding-top: 0;
+}
+div.certificado .unidade_certificadora {
+    margin-top: 30px;
+    margin-left: 105px;
+}
+
+/* section */
+div.info {
+    left: 2cm;
+    position: relative;
+    right: 2cm;
+    top: 1.5cm;
+    width: 964px;
+}
+div.info h3,
+div.info h4 {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    width: 964px; 
+}
+div.info h3 {
+    border-bottom: 1px solid #bdc3c7;
+    color: #37474f;
+    font-size: 18pt;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+div.info h4 {
+    color: #337ca0;
+    margin-top: 30px;
+}
+div.info table {
+    border-spacing: 0;
+    font-size: 9pt;
+    width: 100%;
+}
+div.info table.with-borders {
+    margin-top: 12px;
+}
+div.info table td,
+div.info table th {
+    padding: 3px 20px 3px 0;
+}
+div.info table.with-borders td,
+div.info table.with-borders th {
+    border-bottom: 1px solid #bdc3c7;
+    padding: 2px 5px;
+}
+div.info table th {
+    color: #37474f;
+    font-family: "Roboto", sans-serif;
+}
+div.info table strong {
+    color: #37474f;
+    font-weight: bold;
+    padding-right: 5px;
+}
+.rich-text {
+    border: 2px solid #337ca0;
+    font-size: 90%;
+    height: 270px;
+    overflow: hidden;
+    margin-top: 5px;
+    padding: 20px;
+}
+.rich-text li li {
+    margin-left: 15px;
+}
+.rich-text > ol,
+.rich-text > ul {
+    list-style: none;
+}
+table.info td {
+    color: #7f8c8d;
+    font-size: 95%;
+    font-weight: 300;
+}
+table.info td strong {
+    color: #37474f;
+    display: block;
+    font-size: 105%;
+}
+
+/* footer */
+div.rodape {
+    border-top: 1px solid #bdc3c7;
+    bottom: .6cm;
+    left: 2cm;
+    margin-top: .5cm;
+    padding-top: .5cm;
+    position: absolute;
+    right: 2cm;
+}
+div.rodape p {
+    font-size: 14px;
+    padding-bottom: 6px;
+}
+div.rodape table {
+    border: 0 none;
+    border-spacing: 0;
+}
+div.rodape .obs {
+    padding-right: 20px;
+    width: 66%;
+}
+div.rodape .obs a {
+    color: #337ca0;
+}
+div.rodape .obs p {
+    font-size: 9pt;
+    padding-bottom: 4px;
+}
+div.rodape .obs strong {
+    color: #37474f;
+}
+code {
+    font-family: monospace;
+    font-weight: bold;
+}
+li {
+    list-style: none;
+}
+.coluna1,
+.coluna2 {
+    float: left;
+    width: 50%;
+}

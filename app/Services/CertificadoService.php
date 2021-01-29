@@ -101,6 +101,7 @@ class CertificadoService extends AbstractService
                 'dt_emissao_certificado' => Carbon::now(),
                 'nr_codigo_validador' => hashCertificado($inscricao->id_inscricao),
                 'tx_nome_pessoa' => $user->pessoa->tx_nome_pessoa,
+                'tx_nome_social' => $user->pessoa->tx_nome_social,
                 'dt_nascimento' => $user->pessoa->dt_nascimento,
                 'nr_cpf' => $user->pessoa->nr_cpf,
             ]);
@@ -120,6 +121,7 @@ class CertificadoService extends AbstractService
     {
         $data = [
             'tx_nome_pessoa' => $data->tx_nome_pessoa,
+            'tx_nome_social' => $data->tx_nome_social,
             'nr_cpf' => $data->nr_cpf,
             'dt_nascimento' => formataData($data->dt_nascimento),
             'sg_pais_nacionalidade' => $data->sg_pais_nacionalidade,
