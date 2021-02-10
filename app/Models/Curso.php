@@ -26,6 +26,17 @@ class Curso extends AbstractModel
         'dt_lancamento'
     ];
 
+    protected $appends = ['oferta_atual'];
+
+    /**
+     * @return string
+     */
+    public function getOfertaAtualAttribute()
+    {
+        return $this->oferta()->where('tp_tipo_turma', '=', 'A')->first();
+    }
+
+
     public function tematicaCurso(): BelongsTo
     {
         return $this->belongsTo(TematicaCurso::class, 'id_tematica_curso', 'id_tematica_curso');
