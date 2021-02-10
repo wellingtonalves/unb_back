@@ -34,7 +34,6 @@ class Curso extends AbstractModel
     public function getOfertaAtualAttribute()
     {
         return $this->oferta()->where('tp_tipo_turma', '=', 'A')->first();
-//        return Oferta::where('tp_tipo_turma', '=', 'A');
     }
 
 
