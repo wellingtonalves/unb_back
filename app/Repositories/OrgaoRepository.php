@@ -20,7 +20,7 @@ class OrgaoRepository extends AbstractRepository
      * @return string
      */
     protected $fieldSearchable = [
-        'tx_nome_orgao',
+        'tx_nome_orgao' => 'like',
         'bl_status_orgao',
         'id_vinculo',
         'id_esfera',
