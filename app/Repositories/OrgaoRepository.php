@@ -21,7 +21,9 @@ class OrgaoRepository extends AbstractRepository
      */
     protected $fieldSearchable = [
         'tx_nome_orgao',
-        'bl_status_orgao'
+        'bl_status_orgao',
+        'id_vinculo',
+        'id_esfera',
     ];
 
     /**
