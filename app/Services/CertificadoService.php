@@ -132,7 +132,7 @@ class CertificadoService extends AbstractService
             'qt_carga_horaria_oferta' => $data->inscricao->oferta->qt_carga_horaria_oferta,
             'nr_codigo_validador' => $data->nr_codigo_validador,
             'qt_nota_final' => $data->inscricao->qt_nota_final,
-            'tx_conteudo_programatico' => $data->inscricao->oferta->curso->tx_conteudo_programatico,
+            'tx_conteudo_programatico' => $data->inscricao->oferta->curso->tx_conteudo_programatico
         ];
 
         $certificado = \PDF::loadView('certificado.modelo01', ['certificado' => $data])->setPaper('a4', 'landscape');

@@ -42,7 +42,7 @@
 
     <h4>CONTEÚDO PROGRAMÁTICO</h4>
     <div class="rich-text">
-        #TODO
+        {!! $certificado['tx_conteudo_programatico'] !!}
     </div>
 
 </div>
@@ -51,9 +51,7 @@
     <table>
         <tr>
             <td class="qrcode">
-                {{--
-                    {!! DNS2D::getBarcodeHTML(url('/documentos/validacao/certificadocheck/'.$certificado['nr_codigo_validador']), "QRCODE",3,3) !!}
-                --}}
+                    {!! DNS2D::getBarcodeHTML(url('/validacao-documentos?codigo_validador='.$certificado['nr_codigo_validador']), "QRCODE",3,3) !!}
             </td>
             <td class="obs">
                 <p>Certificado registrado na Escola Virtual.Gov - EV.G sob o código <code>{{ $certificado['nr_codigo_validador'] }}</code>.</p>
