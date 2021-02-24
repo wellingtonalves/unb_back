@@ -42,6 +42,7 @@
 
     <h4>CONTEÚDO PROGRAMÁTICO</h4>
     <div class="rich-text">
+        <img src="{{$certificado['logo_certificador']}}" height="100" alt="Logo Certificador">
         {!! $certificado['tx_conteudo_programatico'] !!}
     </div>
 
