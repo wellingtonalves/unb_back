@@ -7,6 +7,8 @@ use App\Http\Controllers\AbstractController;
 use App\Models\Inscricao;
 use App\Services\InscricaoService;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Prettus\Repository\Exceptions\RepositoryException;
 
 class InscricaoController extends AbstractController
@@ -30,6 +32,16 @@ class InscricaoController extends AbstractController
     {
         $this->service = $service;
         $this->model = $model;
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function store(Request $request)
+    {
+        return parent::save($request);
     }
 
     /**
