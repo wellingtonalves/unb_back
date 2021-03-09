@@ -116,4 +116,12 @@ class Oferta extends AbstractModel
     {
         return formataData($this->attributes['dt_termino_oferta']);
     }
+
+    /**
+     * @return BelongsTo
+     */
+    public function parceiro()
+    {
+        return $this->belongsTo(Parceiro::class, 'id_certificador');
+    }
 }

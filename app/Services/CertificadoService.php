@@ -133,6 +133,7 @@ class CertificadoService extends AbstractService
             'nr_codigo_validador' => $data->nr_codigo_validador,
             'qt_nota_final' => $data->inscricao->qt_nota_final,
             'tx_conteudo_programatico' => $data->inscricao->oferta->curso->tx_conteudo_programatico,
+            'logo_certificador' => $data->inscricao->oferta->parceiro->url_logo,
         ];
 
         $certificado = \PDF::loadView('certificado.modelo01', ['certificado' => $data])->setPaper('a4', 'landscape');

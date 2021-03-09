@@ -16,8 +16,21 @@ class Parceiro extends AbstractModel
         'tx_link_parceiros'
     ];
 
+    protected $appends = ['url_logo'];
+
     public function exclusividade(): HasMany
     {
         return $this->hasMany(ExclusividadeOferta::class, 'id_orgao_parceiro', 'id_parceiros');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\UrlGenerator|string
+     */
+    public function getUrlLogoAttribute()
+    {
+        if(!$this->tx_logo_parceiros){
+            return url('img/instituicoes/enap_horizontal.jpg');
+        }
+        return url($this->tx_logo_parceiros);
     }
 }

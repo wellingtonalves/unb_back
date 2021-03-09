@@ -24,7 +24,7 @@ div.info p strong {
 
 /* main */
 div.certificado {
-    background-image: url('../img/certificados/bg-modelo-01.png');
+    background-image: url('img/certificados/bg-modelo-01.png');
     background-repeat: no-repeat;
     font-family: sans-serif;
     height: 793px;
@@ -116,7 +116,7 @@ div.info h3,
 div.info h4 {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
-    width: 964px; 
+    width: 964px;
 }
 div.info h3 {
     border-bottom: 1px solid #bdc3c7;
