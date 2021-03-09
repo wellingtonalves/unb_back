@@ -58,7 +58,7 @@ class Inscricao extends AbstractModel
      */
     public function getDtInscricaoFormatadaAttribute()
     {
-        return formataData($this->attributes['dt_inscricao']);
+        if ($this->attributes['dt_inscricao']) return formataData($this->attributes['dt_inscricao']);
     }
 
     /**
@@ -66,7 +66,7 @@ class Inscricao extends AbstractModel
      */
     public function getDtFimInscricaoFormatadaAttribute()
     {
-        return formataData($this->attributes['dt_fim_inscricao']);
+        if ($this->attributes['dt_fim_inscricao']) return formataData($this->attributes['dt_fim_inscricao']);
     }
 
     /**
