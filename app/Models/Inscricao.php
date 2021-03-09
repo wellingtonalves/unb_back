@@ -13,6 +13,7 @@ class Inscricao extends AbstractModel
     protected $primaryKey = 'id_inscricao';
     protected $fillable = [
         'id_inscricao',
+        'id_legado_inscricao',
         'id_oferta',
         'id_pessoa',
         'nr_codigo_validador',
@@ -21,9 +22,30 @@ class Inscricao extends AbstractModel
         'tp_situacao_inscricao',
         'qt_nota_final',
         'tp_motivo_realiz_curso',
-        'dt_fim_inscricao',
+        'tp_servidor_militar_cidadao',
+        'tp_cidadao_empregado',
+        'tp_poder_execut_legisl_judic',
+        'sg_uf_servidor_estadual',
+        'tp_esfera_servidor_militar',
+        'id_orgao_servidor',
+        'tp_forca_militar',
+        'id_municipio_endereco_residencial',
+        'id_municipio_endereco_comercial',
+        'tp_necessario_notif_chefia',
+        'tx_email_chefia',
+        'tp_necess_identificar_inscricao',
+        'tp_identificador_orgao',
+        'tp_empregado_publico',
+        'tp_ocupa_cargo_funcao',
         'created_at',
         'updated_at',
+        'dt_fim_inscricao',
+        'id_pais',
+        'tp_sem_vinculo',
+        'dt_encerramento',
+        'tp_encerramento',
+        'tp_migrado_webcef',
+        'deleted_at',
     ];
 
     protected $appends = [
@@ -36,7 +58,7 @@ class Inscricao extends AbstractModel
      */
     public function getDtInscricaoFormatadaAttribute()
     {
-        return formataData($this->attributes['dt_inscricao']);
+        if ($this->attributes['dt_inscricao']) return formataData($this->attributes['dt_inscricao']);
     }
 
     /**
@@ -44,7 +66,7 @@ class Inscricao extends AbstractModel
      */
     public function getDtFimInscricaoFormatadaAttribute()
     {
-        return formataData($this->attributes['dt_fim_inscricao']);
+        if ($this->attributes['dt_fim_inscricao']) return formataData($this->attributes['dt_fim_inscricao']);
     }
 
     /**
